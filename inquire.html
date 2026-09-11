@@ -293,8 +293,7 @@
     <p class="direct-note">Travel fee applies outside Calgary city limits. Need a quick gut-check on whether your space will work? See the site requirements note below before you write your essay.</p>
   </div>
 
-  <form name="event-inquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thank-you.html">
-    <input type="hidden" name="form-name" value="event-inquiry">
+  <form name="event-inquiry" id="event-inquiry-form" method="POST">
     <p style="display:none;"><label>Don't fill this out: <input name="bot-field"></label></p>
     <div class="form-row">
       <div class="form-group">
@@ -346,14 +345,94 @@
       </div>
     </div>
     <div class="form-group">
+      <label class="form-label">What are you interested in?</label>
+      <div style="display:flex; flex-direction:column; gap:6px; margin-top:4px;">
+        <label style="font-weight:normal; display:flex; align-items:center; gap:8px;"><input type="checkbox" name="interest" style="width:auto; padding:0; flex:0 0 auto;" value="Weeknight Package (4hr)"> Weeknight Package (4hr)</label>
+        <label style="font-weight:normal; display:flex; align-items:center; gap:8px;"><input type="checkbox" name="interest" style="width:auto; padding:0; flex:0 0 auto;" value="Full Event Package (8hr)"> Full Event Package (8hr)</label>
+        <label style="font-weight:normal; display:flex; align-items:center; gap:8px;"><input type="checkbox" name="interest" style="width:auto; padding:0; flex:0 0 auto;" value="The Frozen Bar"> The Frozen Bar</label>
+        <label style="font-weight:normal; display:flex; align-items:center; gap:8px;"><input type="checkbox" name="interest" style="width:auto; padding:0; flex:0 0 auto;" value="Custom signature cocktails"> Custom signature cocktails</label>
+        <label style="font-weight:normal; display:flex; align-items:center; gap:8px;"><input type="checkbox" name="interest" style="width:auto; padding:0; flex:0 0 auto;" value="Bartender-only service"> Bartender-only service</label>
+        <label style="font-weight:normal; display:flex; align-items:center; gap:8px;"><input type="checkbox" name="interest" style="width:auto; padding:0; flex:0 0 auto;" value="Not sure yet / just exploring"> Not sure yet / just exploring</label>
+      </div>
+    </div>
+    <div class="form-group">
       <label class="form-label">Tell us about your event</label>
       <textarea rows="4" name="message" placeholder="Drinks you're picturing, anything unusual about the space, questions you have..."></textarea>
       <p class="form-hint">Worth mentioning here if you're unsure about gate width, slope, or access — we'll flag it before you book, not after.</p>
     </div>
-    <button type="submit">Send inquiry</button>
+    <div class="form-group" style="display:flex; align-items:flex-start; gap:8px;">
+      <input type="checkbox" id="marketing-consent" name="marketing-consent" style="width:auto; padding:0; flex:0 0 auto; margin-top:4px;">
+      <label for="marketing-consent" style="font-size:14px; font-weight:normal;">Keep me posted on offers, seasonal drink menus, and news from Bubbles and Brews Canada.</label>
+    </div>
+    <button type="submit" id="event-inquiry-submit">Send inquiry</button>
   </form>
   <p id="form-status" style="display:none; margin-top:16px; padding:14px 18px; border-radius:4px; font-size:14px;"></p>
 </div>
+
+<script>
+(function () {
+  var form = document.getElementById('event-inquiry-form');
+  var statusEl = document.getElementById('form-status');
+  var submitBtn = document.getElementById('event-inquiry-submit');
+  var SUPABASE_URL = 'https://rtgtmhpqcjfhrvqhqxmz.supabase.co';
+  var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ0Z3RtaHBxY2pmaHJ2cWhxeG16Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkxMDQ0MzUsImV4cCI6MjEwNDY4MDQzNX0.TKGNmQZnN2BS7AkRtiehUbgcfLhklumQuMkx8J_JcrI';
+
+  function showStatus(message, isError) {
+    statusEl.textContent = message;
+    statusEl.style.display = 'block';
+    statusEl.style.background = isError ? '#f3e0dc' : '#eef1e7';
+    statusEl.style.color = isError ? '#a23b3b' : '#3a3530';
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var data = new FormData(form);
+    var interests = data.getAll('interest');
+    var notesParts = [];
+    if (interests.length) notesParts.push('Interested in: ' + interests.join(', '));
+    if (data.get('message')) notesParts.push(data.get('message'));
+
+    var payload = {
+      name: (data.get('first-name') + ' ' + data.get('last-name')).trim(),
+      email: data.get('email') || undefined,
+      phone: data.get('phone') || undefined,
+      event_date: data.get('event-date') || undefined,
+      event_type: data.get('event-type') || undefined,
+      venue: data.get('venue-location') || undefined,
+      guest_count: data.get('guest-count') ? Number(data.get('guest-count')) : undefined,
+      notes: notesParts.length ? notesParts.join('\n\n') : undefined,
+      marketing_consent: data.get('marketing-consent') === 'on',
+      website: data.get('bot-field') || undefined
+    };
+
+    if (!payload.event_date) {
+      showStatus('Please pick an event date so we can check availability.', true);
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+
+    fetch(SUPABASE_URL + '/functions/v1/inquiry-intake', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        apikey: SUPABASE_ANON_KEY
+      },
+      body: JSON.stringify(payload)
+    })
+      .then(function (res) {
+        if (!res.ok) throw new Error('submit-failed');
+        window.location.href = '/thank-you.html';
+      })
+      .catch(function () {
+        showStatus("Something went wrong sending that — please try again, or call/text us directly.", true);
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send inquiry';
+      });
+  });
+})();
+</script>
 
 </main>
 <footer>
