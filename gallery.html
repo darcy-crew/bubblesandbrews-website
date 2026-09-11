@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery | Calgary Mobile Bar Events — Bubbles and Brews Canada</title>
+<meta name="description" content="Real weddings, engagements, and events featuring our vintage Piaggio Ape mobile bar across Calgary, Banff, and Canmore.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"></noscript>
+<style>
+  :root {
+    --cream: #FAF6EE; --cream-deep: #F1E9D8; --sand: #E4D7BE;
+    --terracotta: #965C43; --olive: #6B7256; --ink: #3A3530;
+    --ink-soft: #6B6358; --white: #FFFFFF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Jost', sans-serif; color: var(--ink); background: var(--cream); line-height: 1.7; }
+  h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 500; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+  nav { display: flex; align-items: center; justify-content: space-between; padding: 20px 32px; max-width: 1180px; margin: 0 auto; position: sticky; top: 0; z-index: 100; background: var(--cream); border-bottom: 1px solid var(--cream-deep); }
+  .logo { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 500; }
+  .logo span { color: var(--terracotta); font-style: italic; }
+  .logo .sub { font-style: normal; font-size: 14px; color: var(--ink-soft); }
+  .navlinks { display: flex; gap: 20px; font-size: 13px; letter-spacing: 0.025em; text-transform: uppercase; }
+  .navlinks a { color: var(--ink); text-decoration: none; }
+  .nav-dropdown { position: relative; }
+  .nav-dropdown-panel {
+    position: absolute;
+    top: 28px;
+    left: -16px;
+    background: var(--white);
+    border: 1px solid var(--sand);
+    border-radius: 6px;
+    padding: 8px 0;
+    min-width: 200px;
+    box-shadow: 0 8px 24px rgba(58,53,48,0.08);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px);
+    transition: opacity 0.15s, transform 0.15s, visibility 0.15s;
+    z-index: 50;
+  }
+  .nav-dropdown:hover .nav-dropdown-panel,
+  .nav-dropdown:focus-within .nav-dropdown-panel {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .nav-dropdown-panel a {
+    display: block;
+    padding: 10px 18px;
+    font-size: 13px;
+    text-transform: none;
+    letter-spacing: 0.01em;
+    color: var(--ink);
+  }
+  .nav-dropdown-panel a:hover { background: var(--cream-deep); color: var(--terracotta); }
+  .navlinks a.active { color: var(--terracotta); border-bottom: 1px solid var(--terracotta); padding-bottom: 4px; }
+  .nav-cta { border: 1px solid var(--ink); padding: 10px 24px; font-size: 13px; letter-spacing: 0.05em; text-transform: uppercase; border-radius: 2px; color: var(--ink) !important; text-decoration: none !important; background: transparent; transition: background 0.15s, color 0.15s; } .nav-cta:hover { background: var(--ink); color: var(--white) !important; }
+
+  .page-hero { padding: 80px 0 48px; text-align: center; }
+  .eyebrow { color: var(--terracotta); font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 14px; }
+  .page-hero h1 { font-size: 44px; margin-bottom: 16px; }
+  .page-hero p { color: var(--ink-soft); font-size: 16.5px; max-width: 600px; margin: 0 auto; }
+
+  .filters {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 48px;
+    flex-wrap: wrap;
+    padding: 0 32px;
+  }
+  .filter-btn {
+    border: 1px solid var(--sand);
+    background: var(--white);
+    padding: 9px 20px;
+    font-size: 13px;
+    letter-spacing: 0.03em;
+    border-radius: 20px;
+    cursor: pointer;
+    color: var(--ink-soft);
+  }
+  .filter-btn.active { background: var(--terracotta); color: var(--white); border-color: var(--terracotta); }
+
+  .gallery-masonry {
+    max-width: 1180px;
+    margin: 0 auto 80px;
+    padding: 0 32px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    grid-auto-flow: dense;
+  }
+  .g-tile {
+    background: var(--sand);
+    border-radius: 6px;
+    position: relative;
+    overflow: hidden;
+    min-height: 220px;
+  }
+  .g-tile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    cursor: zoom-in;
+  }
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(20, 17, 14, 0.92);
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox img {
+    max-width: 90vw;
+    max-height: 86vh;
+    object-fit: contain;
+    border-radius: 4px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  }
+  .lightbox-close {
+    position: absolute;
+    top: 24px;
+    right: 32px;
+    color: var(--white);
+    font-size: 36px;
+    line-height: 1;
+    cursor: pointer;
+    background: none;
+    border: none;
+    opacity: 0.8;
+  }
+  .lightbox-close:hover { opacity: 1; }
+  .lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.1);
+    border: none;
+    color: var(--white);
+    font-size: 28px;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .lightbox-nav:hover { background: rgba(255,255,255,0.2); }
+  .lightbox-prev { left: 24px; }
+  .lightbox-next { right: 24px; }
+  .lightbox-caption {
+    position: absolute;
+    bottom: 28px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: var(--cream);
+    font-size: 14px;
+    opacity: 0.85;
+    padding: 0 80px;
+  }
+  @media (max-width: 600px) {
+    .lightbox-nav { width: 40px; height: 40px; font-size: 20px; }
+    .lightbox-close { top: 14px; right: 18px; font-size: 28px; }
+    .lightbox-caption { font-size: 12.5px; padding: 0 50px; }
+  }
+  .g-tile span {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    color: var(--white);
+    background: rgba(58,53,48,0.6);
+    padding: 4px 10px;
+    border-radius: 3px;
+  }
+  .g-tile.tall { grid-row: span 2; min-height: 460px; }
+  .g-tile.wide { grid-column: span 2; }
+  .g-placeholder {
+    text-align: center;
+    color: var(--ink-soft);
+    font-size: 12.5px;
+    padding: 16px;
+    line-height: 1.5;
+  }
+  .g-placeholder .cat {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .g-tile:nth-child(odd) { background: #ECE0C7; }
+  .g-tile:nth-child(even) { background: #E1D2AE; }
+  .g-tile:nth-child(3n) { background: #E8DBC0; }
+
+  .cta-strip {
+    background: var(--white);
+    padding: 72px 0;
+    text-align: center;
+    border-top: 1px solid var(--cream-deep);
+  }
+  .cta-strip h2 { font-size: 30px; margin-bottom: 14px; }
+  .cta-strip p { color: var(--ink-soft); font-size: 15.5px; margin-bottom: 24px; }
+  .pkg-btn { display: inline-block; background: var(--terracotta); color: var(--white); padding: 14px 32px; font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; border-radius: 2px; text-decoration: none; }
+
+  .build-note {
+    max-width: 700px;
+    margin: 0 auto 56px;
+    padding: 16px 24px;
+    background: var(--cream-deep);
+    border-left: 3px solid var(--terracotta);
+    font-size: 13.5px;
+    color: var(--ink);
+  }
+  footer {
+    background: var(--ink);
+    color: var(--sand);
+    padding: 56px 0 28px;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr;
+    gap: 40px;
+    max-width: 1180px;
+    margin: 0 auto 40px;
+    padding: 0 32px;
+  }
+  .footer-col h3 {
+    color: var(--white);
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 400;
+    margin-bottom: 16px;
+    opacity: 0.8;
+  }
+  .footer-col a {
+    display: block;
+    color: var(--sand);
+    text-decoration: none;
+    font-size: 14.5px;
+    padding: 6px 0;
+    opacity: 0.9;
+  }
+  .footer-col a:hover { opacity: 1; text-decoration: underline; }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.12);
+    padding-top: 22px;
+    text-align: center;
+    font-size: 12.5px;
+    opacity: 0.7;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 32px;
+    height: 32px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+  .menu-toggle span {
+    display: block;
+    height: 2px;
+    width: 100%;
+    background: var(--ink);
+  }
+  .mobile-menu {
+    display: none;
+    flex-direction: column;
+    background: var(--white);
+    border-bottom: 1px solid var(--sand);
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.25s ease;
+    position: sticky;
+    top: 68px;
+    z-index: 99;
+  }
+  .mobile-menu.open { max-height: 540px; }
+  .mobile-menu a {
+    padding: 16px 32px;
+    font-size: 15px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    border-top: 1px solid var(--cream-deep);
+  }
+  .mobile-menu a.active { color: var(--terracotta); }
+  .mobile-menu a.mm-cta { color: var(--terracotta); font-weight: 500; }
+  .mobile-menu a.mm-sub { padding-left: 48px; font-size: 13.5px; color: var(--ink-soft); border-top: none; }
+
+  @media (max-width: 860px) {
+    .navlinks, .nav-cta { display: none; }
+    .menu-toggle { display: flex; }
+    .mobile-menu { display: flex; }
+    .footer-grid { grid-template-columns: 1fr; gap: 32px; text-align: left; }
+    .gallery-masonry { grid-template-columns: repeat(2, 1fr); }
+    .g-tile.wide { grid-column: span 2; }
+    .g-tile.tall { grid-row: span 1; min-height: 220px; }
+  }
+  @media (max-width: 480px) {
+    .page-hero h1 { font-size: 32px; }
+    .page-hero { padding: 56px 0 40px; }
+    .gallery-masonry { grid-template-columns: 1fr; }
+    .g-tile.wide { grid-column: span 1; }
+    .filters { gap: 8px; }
+    .filter-btn { padding: 7px 14px; font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo"><a href='/' style='color:inherit;text-decoration:none;'>Bubbles <span>and</span> Brews <span class="sub">Canada</span></a></div>
+  <div class="navlinks">
+    <a href='/our-story'>Our Story</a>
+    <a href='/packages'>Packages</a>
+    <a href='/what-we-pour'>What We Pour</a>
+    <a class='active' href='/gallery'>Gallery</a>
+    <a href='/frozen-bar'>The Frozen Bar</a>
+    <div class="nav-dropdown">
+      <a href='/resources'>Resources</a>
+      <div class="nav-dropdown-panel">
+        <a href='/ice-calculator'>Ice Calculator</a>
+        <a href='/drink-calculator'>Drink Calculator</a>
+        <a href='/trending-cocktails'>Trending Cocktails</a>
+      </div>
+    </div>
+          <a href='/faq'>FAQ</a>
+  </div>
+  <a class='nav-cta' href='/inquire'>Let's talk</a>
+  <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" onclick="document.getElementById('mobile-menu').classList.toggle('open'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded')==='false');">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<main>
+<div class="mobile-menu" id="mobile-menu">
+  <a href='/our-story'>Our Story</a>
+  <a href='/packages'>Packages</a>
+  <a href='/what-we-pour'>What We Pour</a>
+  <a class='active' href='/gallery'>Gallery</a>
+  <a href='/frozen-bar'>The Frozen Bar</a>
+  <a href='/resources'>Resources</a>
+  <a href='/faq'>FAQ</a>
+  <a class='mm-cta' href='/inquire'>Let's talk</a>
+</div>
+
+
+<section class="page-hero">
+  <div class="eyebrow">Gallery</div>
+  <h1>Real events, real guests</h1>
+  <p>Sixty-plus weddings, engagements, corporate events, and backyard parties across Calgary, Banff, Canmore, and the Okanagan — real events, real guests, real prosecco.</p>
+</section>
+
+<div class="wrap"></div>
+
+<div class="filters">
+  <button class="filter-btn active" data-filter="all">All</button>
+  <button class="filter-btn" data-filter="weddings">Weddings</button>
+  <button class="filter-btn" data-filter="engagements">Engagements</button>
+  <button class="filter-btn" data-filter="corporate">Corporate</button>
+  <button class="filter-btn" data-filter="golf">Golf Tournaments</button>
+  <button class="filter-btn" data-filter="parties">Parties &amp; Celebrations</button>
+  <button class="filter-btn" data-filter="farm-event">The Farm Event</button>
+  <button class="filter-btn" data-filter="venues">Venues</button>
+  <button class="filter-btn" data-filter="details">Details</button>
+</div>
+
+<div class="gallery-masonry">
+  <div class="g-tile tall" data-category="weddings"><img src="photos/gallery/weddings/banff-mountain-wedding-mobile-bar-full-setup.jpg" srcset="photos/gallery/weddings/banff-mountain-wedding-mobile-bar-full-setup.jpg 1600w, photos/gallery/weddings/banff-mountain-wedding-mobile-bar-full-setup-1200w.jpg 1200w, photos/gallery/weddings/banff-mountain-wedding-mobile-bar-full-setup-800w.jpg 800w, photos/gallery/weddings/banff-mountain-wedding-mobile-bar-full-setup-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Full Bubbles and Brews mobile bar setup with florals and catering table at a mountain venue near Banff" loading="lazy"><span>Weddings</span></div>
+  <div class="g-tile" data-category="parties"><img src="photos/gallery/parties/calgary-stampede-season-backyard-party-mobile-bar.jpg" srcset="photos/gallery/parties/calgary-stampede-season-backyard-party-mobile-bar.jpg 1600w, photos/gallery/parties/calgary-stampede-season-backyard-party-mobile-bar-1200w.jpg 1200w, photos/gallery/parties/calgary-stampede-season-backyard-party-mobile-bar-800w.jpg 800w, photos/gallery/parties/calgary-stampede-season-backyard-party-mobile-bar-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Two guests celebrating together at a Stampede-season backyard party in Calgary, in front of the open Bubbles and Brews mobile bar" loading="lazy"><span>Parties &amp; Celebrations</span></div>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightbox-close" aria-label="Close">&times;</button>
+  <button class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="Previous photo">&#8249;</button>
+  <img id="lightbox-img" src="" alt="">
+  <button class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="Next photo">&#8250;</button>
+  <div class="lightbox-caption" id="lightbox-caption"></div>
+</div>
+  <div class="g-tile" data-category="weddings"><img src="photos/gallery/weddings/banff-mountain-wedding-ceremony-mobile-bar.jpg" srcset="photos/gallery/weddings/banff-mountain-wedding-ceremony-mobile-bar.jpg 1600w, photos/gallery/weddings/banff-mountain-wedding-ceremony-mobile-bar-1200w.jpg 1200w, photos/gallery/weddings/banff-mountain-wedding-ceremony-mobile-bar-800w.jpg 800w, photos/gallery/weddings/banff-mountain-wedding-ceremony-mobile-bar-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Bubbles and Brews Piaggio Ape mobile bar at a mountain wedding ceremony in Banff with the Rockies in the background" loading="lazy"><span>Weddings</span></div>
+  <div class="g-tile" data-category="details"><img src="photos/gallery/details/prosecco-cocktail-styled-detail.jpg" srcset="photos/gallery/details/prosecco-cocktail-styled-detail.jpg 1600w, photos/gallery/details/prosecco-cocktail-styled-detail-1200w.jpg 1200w, photos/gallery/details/prosecco-cocktail-styled-detail-800w.jpg 800w, photos/gallery/details/prosecco-cocktail-styled-detail-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Styled sparkling prosecco cocktail in an iridescent flute with gold straws" loading="lazy"><span>Details</span></div>
+  <div class="g-tile" data-category="details"><img src="photos/gallery/details/prosecco-tap-press-for-champagne-mirror.jpg" srcset="photos/gallery/details/prosecco-tap-press-for-champagne-mirror.jpg 1600w, photos/gallery/details/prosecco-tap-press-for-champagne-mirror-1200w.jpg 1200w, photos/gallery/details/prosecco-tap-press-for-champagne-mirror-800w.jpg 800w, photos/gallery/details/prosecco-tap-press-for-champagne-mirror-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Vintage gold mirror reading &#x27;Press for Champagne&#x27; above the prosecco tap system" loading="lazy"><span>Details</span></div>
+  <div class="g-tile tall" data-category="corporate"><img src="photos/gallery/corporate/hotel-lobby-mobile-bar-marble-staircase.jpg" srcset="photos/gallery/corporate/hotel-lobby-mobile-bar-marble-staircase.jpg 1600w, photos/gallery/corporate/hotel-lobby-mobile-bar-marble-staircase-1200w.jpg 1200w, photos/gallery/corporate/hotel-lobby-mobile-bar-marble-staircase-800w.jpg 800w, photos/gallery/corporate/hotel-lobby-mobile-bar-marble-staircase-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Bubbles and Brews mobile bar set up indoors in a hotel lobby with a marble staircase" loading="lazy"><span>Corporate</span></div>
+  <div class="g-tile" data-category="weddings"><img src="photos/gallery/weddings/calgary-south-asian-wedding-mobile-bar-tent.jpg" srcset="photos/gallery/weddings/calgary-south-asian-wedding-mobile-bar-tent.jpg 1600w, photos/gallery/weddings/calgary-south-asian-wedding-mobile-bar-tent-1200w.jpg 1200w, photos/gallery/weddings/calgary-south-asian-wedding-mobile-bar-tent-800w.jpg 800w, photos/gallery/weddings/calgary-south-asian-wedding-mobile-bar-tent-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Couple celebrating in traditional formal wear in front of the mobile bar under an event tent" loading="lazy"><span>Weddings</span></div>
+  <div class="g-tile" data-category="parties"><img src="photos/gallery/parties/calgary-bachelorette-party-mobile-bar.jpg" srcset="photos/gallery/parties/calgary-bachelorette-party-mobile-bar.jpg 1600w, photos/gallery/parties/calgary-bachelorette-party-mobile-bar-1200w.jpg 1200w, photos/gallery/parties/calgary-bachelorette-party-mobile-bar-800w.jpg 800w, photos/gallery/parties/calgary-bachelorette-party-mobile-bar-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Bachelorette party guests wearing a &#x27;Hot Squad&#x27; sash in front of the Bubbles and Brews truck" loading="lazy"><span>Parties &amp; Celebrations</span></div>
+  <div class="g-tile wide" data-category="weddings"><img src="photos/gallery/weddings/alberta-mansion-wedding-bride-mobile-bar.jpg" srcset="photos/gallery/weddings/alberta-mansion-wedding-bride-mobile-bar.jpg 1600w, photos/gallery/weddings/alberta-mansion-wedding-bride-mobile-bar-1200w.jpg 1200w, photos/gallery/weddings/alberta-mansion-wedding-bride-mobile-bar-800w.jpg 800w, photos/gallery/weddings/alberta-mansion-wedding-bride-mobile-bar-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Bride in a cathedral veil and lace gown beside the mobile bar at a historic mansion venue" loading="lazy"><span>Weddings</span></div>
+  <div class="g-tile" data-category="parties"><img src="photos/gallery/parties/mobile-bar-guest-yellow-dress-dog.jpg" srcset="photos/gallery/parties/mobile-bar-guest-yellow-dress-dog.jpg 1600w, photos/gallery/parties/mobile-bar-guest-yellow-dress-dog-1200w.jpg 1200w, photos/gallery/parties/mobile-bar-guest-yellow-dress-dog-800w.jpg 800w, photos/gallery/parties/mobile-bar-guest-yellow-dress-dog-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Guest in a yellow dress holding a small dog at the open Bubbles and Brews mobile bar" loading="lazy"><span>Parties &amp; Celebrations</span></div>
+  <div class="g-tile" data-category="venues"><img src="photos/gallery/venues/calgary-mobile-bar-golden-hour-sunset-view.jpg" srcset="photos/gallery/venues/calgary-mobile-bar-golden-hour-sunset-view.jpg 1600w, photos/gallery/venues/calgary-mobile-bar-golden-hour-sunset-view-1200w.jpg 1200w, photos/gallery/venues/calgary-mobile-bar-golden-hour-sunset-view-800w.jpg 800w, photos/gallery/venues/calgary-mobile-bar-golden-hour-sunset-view-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Golden hour sunset view from inside the Calgary mobile bar overlooking a residential green space" loading="lazy"><span>Venues</span></div>
+  <div class="g-tile wide" data-category="venues"><img src="photos/gallery/venues/canmore-mountain-backdrop-mobile-bar-styled-shoot.jpg" srcset="photos/gallery/venues/canmore-mountain-backdrop-mobile-bar-styled-shoot.jpg 1600w, photos/gallery/venues/canmore-mountain-backdrop-mobile-bar-styled-shoot-1200w.jpg 1200w, photos/gallery/venues/canmore-mountain-backdrop-mobile-bar-styled-shoot-800w.jpg 800w, photos/gallery/venues/canmore-mountain-backdrop-mobile-bar-styled-shoot-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Bubbles and Brews mobile bar styled with dried florals against a Canmore mountain backdrop" title="Photo: Kristi Sneddon Photography" loading="lazy"><span>Venues</span></div>
+  <div class="g-tile tall" data-category="weddings"><img src="photos/gallery/weddings/alberta-wedding-couple-kiss-mobile-bar.jpg" srcset="photos/gallery/weddings/alberta-wedding-couple-kiss-mobile-bar.jpg 1600w, photos/gallery/weddings/alberta-wedding-couple-kiss-mobile-bar-1200w.jpg 1200w, photos/gallery/weddings/alberta-wedding-couple-kiss-mobile-bar-800w.jpg 800w, photos/gallery/weddings/alberta-wedding-couple-kiss-mobile-bar-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Bride and groom sharing a kiss in front of the open Piaggio Ape mobile bar" loading="lazy"><span>Weddings</span></div>
+  <div class="g-tile" data-category="corporate"><img src="photos/gallery/corporate/calgary-corporate-event-mobile-bar-indoor.jpg" srcset="photos/gallery/corporate/calgary-corporate-event-mobile-bar-indoor.jpg 1600w, photos/gallery/corporate/calgary-corporate-event-mobile-bar-indoor-1200w.jpg 1200w, photos/gallery/corporate/calgary-corporate-event-mobile-bar-indoor-800w.jpg 800w, photos/gallery/corporate/calgary-corporate-event-mobile-bar-indoor-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Guests posing together at an indoor Calgary corporate event with the mobile bar" loading="lazy"><span>Corporate</span></div>
+  <div class="g-tile" data-category="parties"><img src="photos/gallery/parties/backyard-evening-string-lights-mobile-bar.jpg" srcset="photos/gallery/parties/backyard-evening-string-lights-mobile-bar.jpg 1600w, photos/gallery/parties/backyard-evening-string-lights-mobile-bar-1200w.jpg 1200w, photos/gallery/parties/backyard-evening-string-lights-mobile-bar-800w.jpg 800w, photos/gallery/parties/backyard-evening-string-lights-mobile-bar-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Mobile bar lit up at night under string lights in a backyard setting" loading="lazy"><span>Parties &amp; Celebrations</span></div>
+  <div class="g-tile wide" data-category="venues"><img src="photos/gallery/venues/calgary-mobile-bar-peonies-daylight.jpg" srcset="photos/gallery/venues/calgary-mobile-bar-peonies-daylight.jpg 1600w, photos/gallery/venues/calgary-mobile-bar-peonies-daylight-1200w.jpg 1200w, photos/gallery/venues/calgary-mobile-bar-peonies-daylight-800w.jpg 800w, photos/gallery/venues/calgary-mobile-bar-peonies-daylight-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Full Piaggio Ape mobile bar with fresh peonies and decorative styling on a sunny day in Calgary" loading="lazy"><span>Venues</span></div>
+  <div class="g-tile" data-category="details"><img src="photos/gallery/details/boho-styled-mobile-bar-moroccan-rug.jpg" srcset="photos/gallery/details/boho-styled-mobile-bar-moroccan-rug.jpg 1600w, photos/gallery/details/boho-styled-mobile-bar-moroccan-rug-1200w.jpg 1200w, photos/gallery/details/boho-styled-mobile-bar-moroccan-rug-800w.jpg 800w, photos/gallery/details/boho-styled-mobile-bar-moroccan-rug-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Boho-styled Bubbles and Brews mobile bar setup with a Moroccan rug and dried florals" loading="lazy"><span>Details</span></div>
+  <div class="g-tile" data-category="engagements"><img src="photos/gallery/engagements/calgary-engagement-party-champagne-toast.jpg" srcset="photos/gallery/engagements/calgary-engagement-party-champagne-toast.jpg 1440w, photos/gallery/engagements/calgary-engagement-party-champagne-toast-1200w.jpg 1200w, photos/gallery/engagements/calgary-engagement-party-champagne-toast-800w.jpg 800w, photos/gallery/engagements/calgary-engagement-party-champagne-toast-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Engaged couple sharing a champagne toast in front of the mobile bar in a Calgary backyard setting" loading="lazy"><span>Engagements</span></div>
+  <div class="g-tile" data-category="details"><img src="photos/gallery/details/mobile-bar-peacock-feathers-dusk-detail.jpg" srcset="photos/gallery/details/mobile-bar-peacock-feathers-dusk-detail.jpg 1600w, photos/gallery/details/mobile-bar-peacock-feathers-dusk-detail-1200w.jpg 1200w, photos/gallery/details/mobile-bar-peacock-feathers-dusk-detail-800w.jpg 800w, photos/gallery/details/mobile-bar-peacock-feathers-dusk-detail-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Mobile bar styled with peacock feathers and dried florals at dusk" loading="lazy"><span>Details</span></div>
+  <div class="g-tile tall" data-category="farm-event"><img src="photos/gallery/farm-event/okanagan-lakeside-prosecco-bar-friends.jpg" srcset="photos/gallery/farm-event/okanagan-lakeside-prosecco-bar-friends.jpg 1600w, photos/gallery/farm-event/okanagan-lakeside-prosecco-bar-friends-1200w.jpg 1200w, photos/gallery/farm-event/okanagan-lakeside-prosecco-bar-friends-800w.jpg 800w, photos/gallery/farm-event/okanagan-lakeside-prosecco-bar-friends-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Friends celebrating lakeside in front of the Bubbles and Brews prosecco bar with a willow tree and city skyline in the background" loading="lazy"><span>The Farm Event</span></div>
+  <div class="g-tile" data-category="engagements"><img src="photos/gallery/engagements/calgary-engagement-party-prosecco-bar.jpg" srcset="photos/gallery/engagements/calgary-engagement-party-prosecco-bar.jpg 1600w, photos/gallery/engagements/calgary-engagement-party-prosecco-bar-1200w.jpg 1200w, photos/gallery/engagements/calgary-engagement-party-prosecco-bar-800w.jpg 800w, photos/gallery/engagements/calgary-engagement-party-prosecco-bar-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Calgary engagement party with the Bubbles and Brews prosecco bar lit up at dusk under a balloon installation" loading="lazy"><span>Engagements</span></div>
+  <div class="g-tile" data-category="engagements"><img src="photos/gallery/engagements/calgary-engagement-party-mobile-bar-guests.jpg" srcset="photos/gallery/engagements/calgary-engagement-party-mobile-bar-guests.jpg 1600w, photos/gallery/engagements/calgary-engagement-party-mobile-bar-guests-1200w.jpg 1200w, photos/gallery/engagements/calgary-engagement-party-mobile-bar-guests-800w.jpg 800w, photos/gallery/engagements/calgary-engagement-party-mobile-bar-guests-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Guests gathered around the Calgary mobile bar at an engagement party, champagne glasses set for toasting" loading="lazy"><span>Engagements</span></div>
+  <div class="g-tile wide" data-category="engagements"><img src="photos/gallery/engagements/calgary-mobile-bar-golden-hour-portrait.jpg" srcset="photos/gallery/engagements/calgary-mobile-bar-golden-hour-portrait.jpg 1600w, photos/gallery/engagements/calgary-mobile-bar-golden-hour-portrait-1200w.jpg 1200w, photos/gallery/engagements/calgary-mobile-bar-golden-hour-portrait-800w.jpg 800w, photos/gallery/engagements/calgary-mobile-bar-golden-hour-portrait-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Golden hour portrait of a guest seated in the Bubbles and Brews Calgary mobile bar holding a glass of prosecco" loading="lazy"><span>Engagements</span></div>
+  <div class="g-tile" data-category="venues"><img src="photos/gallery/venues/alberta-mobile-bar-forest-venue.jpg" srcset="photos/gallery/venues/alberta-mobile-bar-forest-venue.jpg 1600w, photos/gallery/venues/alberta-mobile-bar-forest-venue-1200w.jpg 1200w, photos/gallery/venues/alberta-mobile-bar-forest-venue-800w.jpg 800w, photos/gallery/venues/alberta-mobile-bar-forest-venue-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Bubbles and Brews vintage mobile bar parked at a forested Alberta event venue" loading="lazy"><span>Venues</span></div>
+  <div class="g-tile tall" data-category="details"><img src="photos/gallery/details/prosecco-tap-system-press-for-champagne.jpg" srcset="photos/gallery/details/prosecco-tap-system-press-for-champagne.jpg 1600w, photos/gallery/details/prosecco-tap-system-press-for-champagne-1200w.jpg 1200w, photos/gallery/details/prosecco-tap-system-press-for-champagne-800w.jpg 800w, photos/gallery/details/prosecco-tap-system-press-for-champagne-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Prosecco tap detail on the mobile bar with a vintage gold-framed &#x27;Press for Champagne&#x27; mirror" loading="lazy"><span>Details</span></div>
+  <div class="g-tile" data-category="corporate"><img src="photos/gallery/corporate/calgary-realtor-open-house-mobile-bar.jpg" srcset="photos/gallery/corporate/calgary-realtor-open-house-mobile-bar.jpg 1600w, photos/gallery/corporate/calgary-realtor-open-house-mobile-bar-1200w.jpg 1200w, photos/gallery/corporate/calgary-realtor-open-house-mobile-bar-800w.jpg 800w, photos/gallery/corporate/calgary-realtor-open-house-mobile-bar-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Bubbles and Brews mobile bar activation at a Calgary realtor open house event" loading="lazy"><span>Corporate</span></div>
+  <div class="g-tile" data-category="venues"><img src="photos/gallery/venues/calgary-mobile-bar-happy-place.jpg" srcset="photos/gallery/venues/calgary-mobile-bar-happy-place.jpg 1600w, photos/gallery/venues/calgary-mobile-bar-happy-place-1200w.jpg 1200w, photos/gallery/venues/calgary-mobile-bar-happy-place-800w.jpg 800w, photos/gallery/venues/calgary-mobile-bar-happy-place-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Bubbles and Brews Calgary mobile bar in clean daylight with a &#x27;This is our Happy Place&#x27; sign and pampas grass styling" loading="lazy"><span>Venues</span></div>
+  <div class="g-tile wide" data-category="details"><img src="photos/gallery/details/prosecco-truck-tap-detail-styling.jpg" srcset="photos/gallery/details/prosecco-truck-tap-detail-styling.jpg 1600w, photos/gallery/details/prosecco-truck-tap-detail-styling-1200w.jpg 1200w, photos/gallery/details/prosecco-truck-tap-detail-styling-800w.jpg 800w, photos/gallery/details/prosecco-truck-tap-detail-styling-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Prosecco truck tap detail styled with dried florals and a &#x27;Happy Place&#x27; sign" loading="lazy"><span>Details</span></div>
+  <div class="g-tile" data-category="corporate"><img src="photos/gallery/corporate/calgary-stationary-bar-service-glass-tent.jpg" srcset="photos/gallery/corporate/calgary-stationary-bar-service-glass-tent.jpg 1600w, photos/gallery/corporate/calgary-stationary-bar-service-glass-tent-1200w.jpg 1200w, photos/gallery/corporate/calgary-stationary-bar-service-glass-tent-800w.jpg 800w, photos/gallery/corporate/calgary-stationary-bar-service-glass-tent-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Bubbles and Brews stationary bar service inside a glass marquee tent, an alternative to the mobile Piaggio Ape bar" loading="lazy"><span>Corporate</span></div>
+  <div class="g-tile" data-category="corporate"><img src="photos/gallery/corporate/calgary-stationary-bar-service-bartenders.jpg" srcset="photos/gallery/corporate/calgary-stationary-bar-service-bartenders.jpg 1600w, photos/gallery/corporate/calgary-stationary-bar-service-bartenders-1200w.jpg 1200w, photos/gallery/corporate/calgary-stationary-bar-service-bartenders-800w.jpg 800w, photos/gallery/corporate/calgary-stationary-bar-service-bartenders-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Bartenders pouring drinks at the Bubbles and Brews stationary bar setup inside a glass event tent" loading="lazy"><span>Corporate</span></div>
+  <div class="g-tile tall" data-category="venues"><img src="photos/gallery/venues/alberta-mountain-venue-mobile-bar-pergola.jpg" srcset="photos/gallery/venues/alberta-mountain-venue-mobile-bar-pergola.jpg 1600w, photos/gallery/venues/alberta-mountain-venue-mobile-bar-pergola-1200w.jpg 1200w, photos/gallery/venues/alberta-mountain-venue-mobile-bar-pergola-800w.jpg 800w, photos/gallery/venues/alberta-mountain-venue-mobile-bar-pergola-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Vintage Piaggio Ape mobile bar set up under a pergola at a mountain-view Alberta venue" loading="lazy"><span>Venues</span></div>
+  <div class="g-tile" data-category="venues"><img src="photos/gallery/venues/alberta-rustic-timber-venue-mobile-bar.jpg" srcset="photos/gallery/venues/alberta-rustic-timber-venue-mobile-bar.jpg 1600w, photos/gallery/venues/alberta-rustic-timber-venue-mobile-bar-1200w.jpg 1200w, photos/gallery/venues/alberta-rustic-timber-venue-mobile-bar-800w.jpg 800w, photos/gallery/venues/alberta-rustic-timber-venue-mobile-bar-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Bubbles and Brews mobile bar parked in front of a rustic timber-frame building at an Alberta event venue" loading="lazy"><span>Venues</span></div>
+  <div class="g-tile" data-category="venues"><img src="photos/gallery/venues/alberta-mansion-estate-prosecco-bar.jpg" srcset="photos/gallery/venues/alberta-mansion-estate-prosecco-bar.jpg 1600w, photos/gallery/venues/alberta-mansion-estate-prosecco-bar-1200w.jpg 1200w, photos/gallery/venues/alberta-mansion-estate-prosecco-bar-800w.jpg 800w, photos/gallery/venues/alberta-mansion-estate-prosecco-bar-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Bubbles and Brews prosecco bar parked in front of a grand white colonial-style mansion with columns" loading="lazy"><span>Venues</span></div>
+  <div class="g-tile wide" data-category="venues"><img src="photos/gallery/venues/alberta-timber-pavilion-boho-mobile-bar.jpg" srcset="photos/gallery/venues/alberta-timber-pavilion-boho-mobile-bar.jpg 1600w, photos/gallery/venues/alberta-timber-pavilion-boho-mobile-bar-1200w.jpg 1200w, photos/gallery/venues/alberta-timber-pavilion-boho-mobile-bar-800w.jpg 800w, photos/gallery/venues/alberta-timber-pavilion-boho-mobile-bar-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Boho-styled mobile bar under a timber pavilion with a Persian kilim rug at an Alberta wedding venue" loading="lazy"><span>Venues</span></div>
+  <div class="g-tile" data-category="details"><img src="photos/gallery/details/mobile-bar-i-love-us-sign-detail.jpg" srcset="photos/gallery/details/mobile-bar-i-love-us-sign-detail.jpg 1600w, photos/gallery/details/mobile-bar-i-love-us-sign-detail-1200w.jpg 1200w, photos/gallery/details/mobile-bar-i-love-us-sign-detail-800w.jpg 800w, photos/gallery/details/mobile-bar-i-love-us-sign-detail-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Wedding detail shot of a framed &#x27;I love us&#x27; sign beside candles on the Bubbles and Brews mobile bar" loading="lazy"><span>Details</span></div>
+  <div class="g-tile" data-category="details"><img src="photos/gallery/details/prosecco-truck-styling-detail-kraft-bags.jpg" srcset="photos/gallery/details/prosecco-truck-styling-detail-kraft-bags.jpg 1600w, photos/gallery/details/prosecco-truck-styling-detail-kraft-bags-1200w.jpg 1200w, photos/gallery/details/prosecco-truck-styling-detail-kraft-bags-800w.jpg 800w, photos/gallery/details/prosecco-truck-styling-detail-kraft-bags-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Styling detail of the prosecco truck with pampas grass in kraft paper bags" loading="lazy"><span>Details</span></div>
+  <div class="g-tile" data-category="venues"><img src="photos/gallery/venues/banff-mountain-resort-mobile-bar-lawn.jpg" srcset="photos/gallery/venues/banff-mountain-resort-mobile-bar-lawn.jpg 1600w, photos/gallery/venues/banff-mountain-resort-mobile-bar-lawn-1200w.jpg 1200w, photos/gallery/venues/banff-mountain-resort-mobile-bar-lawn-800w.jpg 800w, photos/gallery/venues/banff-mountain-resort-mobile-bar-lawn-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Bubbles and Brews mobile bar on the lawn of a mountain resort near Banff, Alberta, with panoramic Rocky Mountain views" loading="lazy"><span>Venues</span></div>
+  <div class="g-tile tall" data-category="weddings"><img src="photos/gallery/weddings/banff-wedding-bride-groom-mobile-bar.jpg" srcset="photos/gallery/weddings/banff-wedding-bride-groom-mobile-bar.jpg 1600w, photos/gallery/weddings/banff-wedding-bride-groom-mobile-bar-1200w.jpg 1200w, photos/gallery/weddings/banff-wedding-bride-groom-mobile-bar-800w.jpg 800w, photos/gallery/weddings/banff-wedding-bride-groom-mobile-bar-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Bride and groom posed beside the Bubbles and Brews mobile bar at a mountain resort wedding near Banff" loading="lazy"><span>Weddings</span></div>
+  <div class="g-tile" data-category="venues"><img src="photos/gallery/venues/banff-mountain-resort-golden-hour-mobile-bar.jpg" srcset="photos/gallery/venues/banff-mountain-resort-golden-hour-mobile-bar.jpg 1600w, photos/gallery/venues/banff-mountain-resort-golden-hour-mobile-bar-1200w.jpg 1200w, photos/gallery/venues/banff-mountain-resort-golden-hour-mobile-bar-800w.jpg 800w, photos/gallery/venues/banff-mountain-resort-golden-hour-mobile-bar-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Golden hour view of the mobile bar on a cobblestone patio at a Banff-area mountain resort" loading="lazy"><span>Venues</span></div>
+  <div class="g-tile" data-category="parties"><img src="photos/gallery/parties/alberta-evening-reception-string-lights-mobile-bar.jpg" srcset="photos/gallery/parties/alberta-evening-reception-string-lights-mobile-bar.jpg 1600w, photos/gallery/parties/alberta-evening-reception-string-lights-mobile-bar-1200w.jpg 1200w, photos/gallery/parties/alberta-evening-reception-string-lights-mobile-bar-800w.jpg 800w, photos/gallery/parties/alberta-evening-reception-string-lights-mobile-bar-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Bubbles and Brews mobile bar at an evening reception under string lights with a &#x27;Be Our Guest&#x27; sign" loading="lazy"><span>Parties &amp; Celebrations</span></div>
+  <div class="g-tile wide" data-category="parties"><img src="photos/gallery/parties/bachelorette-party-prosecco-bar-guests.jpg" srcset="photos/gallery/parties/bachelorette-party-prosecco-bar-guests.jpg 1600w, photos/gallery/parties/bachelorette-party-prosecco-bar-guests-1200w.jpg 1200w, photos/gallery/parties/bachelorette-party-prosecco-bar-guests-800w.jpg 800w, photos/gallery/parties/bachelorette-party-prosecco-bar-guests-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Guests celebrating at a bachelorette party in front of the Bubbles and Brews prosecco bar" loading="lazy"><span>Parties &amp; Celebrations</span></div>
+  <div class="g-tile" data-category="farm-event"><img src="photos/gallery/farm-event/okanagan-farm-event-sunrise-mobile-bar.jpg" srcset="photos/gallery/farm-event/okanagan-farm-event-sunrise-mobile-bar.jpg 1600w, photos/gallery/farm-event/okanagan-farm-event-sunrise-mobile-bar-1200w.jpg 1200w, photos/gallery/farm-event/okanagan-farm-event-sunrise-mobile-bar-800w.jpg 800w, photos/gallery/farm-event/okanagan-farm-event-sunrise-mobile-bar-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Sunrise setup of the Bubbles and Brews mobile bar at the Farm Event lakeside venue in the Okanagan" loading="lazy"><span>The Farm Event</span></div>
+  <div class="g-tile tall" data-category="farm-event"><img src="photos/gallery/farm-event/okanagan-farm-event-sunrise-portrait.jpg" srcset="photos/gallery/farm-event/okanagan-farm-event-sunrise-portrait.jpg 1600w, photos/gallery/farm-event/okanagan-farm-event-sunrise-portrait-1200w.jpg 1200w, photos/gallery/farm-event/okanagan-farm-event-sunrise-portrait-800w.jpg 800w, photos/gallery/farm-event/okanagan-farm-event-sunrise-portrait-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Sunrise portrait beside the mobile bar at the Farm Event venue overlooking Okanagan Lake" loading="lazy"><span>The Farm Event</span></div>
+  <div class="g-tile" data-category="farm-event"><img src="photos/gallery/farm-event/okanagan-farm-event-evening-guests.jpg" srcset="photos/gallery/farm-event/okanagan-farm-event-evening-guests.jpg 1600w, photos/gallery/farm-event/okanagan-farm-event-evening-guests-1200w.jpg 1200w, photos/gallery/farm-event/okanagan-farm-event-evening-guests-800w.jpg 800w, photos/gallery/farm-event/okanagan-farm-event-evening-guests-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Guests at the Farm Event sharing a toast beside the mobile bar at golden hour, Okanagan Lake in the background" loading="lazy"><span>The Farm Event</span></div>
+  <div class="g-tile" data-category="corporate"><img src="photos/gallery/corporate/hotel-lobby-mobile-bar-activation.jpg" srcset="photos/gallery/corporate/hotel-lobby-mobile-bar-activation.jpg 1600w, photos/gallery/corporate/hotel-lobby-mobile-bar-activation-1200w.jpg 1200w, photos/gallery/corporate/hotel-lobby-mobile-bar-activation-800w.jpg 800w, photos/gallery/corporate/hotel-lobby-mobile-bar-activation-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Bubbles and Brews mobile bar activation in a hotel lobby with a marble staircase" loading="lazy"><span>Corporate</span></div>
+  <div class="g-tile wide" data-category="venues"><img src="photos/gallery/venues/alberta-estate-venue-prosecco-bar.jpg" srcset="photos/gallery/venues/alberta-estate-venue-prosecco-bar.jpg 1600w, photos/gallery/venues/alberta-estate-venue-prosecco-bar-1200w.jpg 1200w, photos/gallery/venues/alberta-estate-venue-prosecco-bar-800w.jpg 800w, photos/gallery/venues/alberta-estate-venue-prosecco-bar-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Prosecco bar parked in front of a modern farmhouse-style estate venue in Alberta" loading="lazy"><span>Venues</span></div>
+  <div class="g-tile" data-category="weddings"><img src="photos/gallery/weddings/calgary-wedding-bride-mobile-bar-professional.jpg" srcset="photos/gallery/weddings/calgary-wedding-bride-mobile-bar-professional.jpg 1600w, photos/gallery/weddings/calgary-wedding-bride-mobile-bar-professional-1200w.jpg 1200w, photos/gallery/weddings/calgary-wedding-bride-mobile-bar-professional-800w.jpg 800w, photos/gallery/weddings/calgary-wedding-bride-mobile-bar-professional-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Professional wedding photography of a bride beside the Bubbles and Brews Calgary mobile bar" loading="lazy"><span>Weddings</span></div>
+  <div class="g-tile" data-category="weddings"><img src="photos/gallery/weddings/calgary-bride-prosecco-truck-cab-portrait.jpg" srcset="photos/gallery/weddings/calgary-bride-prosecco-truck-cab-portrait.jpg 1600w, photos/gallery/weddings/calgary-bride-prosecco-truck-cab-portrait-1200w.jpg 1200w, photos/gallery/weddings/calgary-bride-prosecco-truck-cab-portrait-800w.jpg 800w, photos/gallery/weddings/calgary-bride-prosecco-truck-cab-portrait-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Bride seated in the cab of the Calgary prosecco truck, professional wedding photography" loading="lazy"><span>Weddings</span></div>
+  <div class="g-tile tall" data-category="weddings"><img src="photos/gallery/weddings/calgary-bride-window-portrait-bouquet.jpg" srcset="photos/gallery/weddings/calgary-bride-window-portrait-bouquet.jpg 1600w, photos/gallery/weddings/calgary-bride-window-portrait-bouquet-1200w.jpg 1200w, photos/gallery/weddings/calgary-bride-window-portrait-bouquet-800w.jpg 800w, photos/gallery/weddings/calgary-bride-window-portrait-bouquet-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Bride photographed through the truck window with a wedding bouquet displayed on the roof" loading="lazy"><span>Weddings</span></div>
+  <div class="g-tile" data-category="weddings"><img src="photos/gallery/weddings/calgary-wedding-couple-cab-window-portrait.jpg" srcset="photos/gallery/weddings/calgary-wedding-couple-cab-window-portrait.jpg 1600w, photos/gallery/weddings/calgary-wedding-couple-cab-window-portrait-1200w.jpg 1200w, photos/gallery/weddings/calgary-wedding-couple-cab-window-portrait-800w.jpg 800w, photos/gallery/weddings/calgary-wedding-couple-cab-window-portrait-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Wedding couple photographed together through the prosecco truck&#x27;s cab window" loading="lazy"><span>Weddings</span></div>
+  <div class="g-tile" data-category="weddings"><img src="photos/gallery/weddings/calgary-wedding-couple-embrace-mobile-bar.jpg" srcset="photos/gallery/weddings/calgary-wedding-couple-embrace-mobile-bar.jpg 1600w, photos/gallery/weddings/calgary-wedding-couple-embrace-mobile-bar-1200w.jpg 1200w, photos/gallery/weddings/calgary-wedding-couple-embrace-mobile-bar-800w.jpg 800w, photos/gallery/weddings/calgary-wedding-couple-embrace-mobile-bar-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Wedding couple embracing beside the Bubbles and Brews Calgary mobile bar, professional photography" loading="lazy"><span>Weddings</span></div>
+  <div class="g-tile wide" data-category="weddings"><img src="photos/gallery/weddings/calgary-wedding-couple-bouquet-mobile-bar.jpg" srcset="photos/gallery/weddings/calgary-wedding-couple-bouquet-mobile-bar.jpg 1600w, photos/gallery/weddings/calgary-wedding-couple-bouquet-mobile-bar-1200w.jpg 1200w, photos/gallery/weddings/calgary-wedding-couple-bouquet-mobile-bar-800w.jpg 800w, photos/gallery/weddings/calgary-wedding-couple-bouquet-mobile-bar-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Wedding couple in a full embrace beside the mobile bar with bouquet detail, professional wedding photography" loading="lazy"><span>Weddings</span></div>
+  <div class="g-tile" data-category="weddings"><img src="photos/gallery/weddings/calgary-bridesmaids-backyard-mobile-bar.jpg" srcset="photos/gallery/weddings/calgary-bridesmaids-backyard-mobile-bar.jpg 1600w, photos/gallery/weddings/calgary-bridesmaids-backyard-mobile-bar-1200w.jpg 1200w, photos/gallery/weddings/calgary-bridesmaids-backyard-mobile-bar-800w.jpg 800w, photos/gallery/weddings/calgary-bridesmaids-backyard-mobile-bar-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Bridesmaids posed in front of the Bubbles and Brews mobile bar at a Calgary backyard wedding" loading="lazy"><span>Weddings</span></div>
+  <div class="g-tile" data-category="weddings"><img src="photos/gallery/weddings/alberta-foothills-wedding-golden-hour-mobile-bar.jpg" srcset="photos/gallery/weddings/alberta-foothills-wedding-golden-hour-mobile-bar.jpg 1600w, photos/gallery/weddings/alberta-foothills-wedding-golden-hour-mobile-bar-1200w.jpg 1200w, photos/gallery/weddings/alberta-foothills-wedding-golden-hour-mobile-bar-800w.jpg 800w, photos/gallery/weddings/alberta-foothills-wedding-golden-hour-mobile-bar-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Wide panoramic view of a wedding couple beside the mobile bar at golden hour in the Alberta foothills" loading="lazy"><span>Weddings</span></div>
+  <div class="g-tile" data-category="weddings"><img src="photos/gallery/weddings/wedding-couple-kissing-prosecco-bar.jpg" srcset="photos/gallery/weddings/wedding-couple-kissing-prosecco-bar.jpg 1600w, photos/gallery/weddings/wedding-couple-kissing-prosecco-bar-1200w.jpg 1200w, photos/gallery/weddings/wedding-couple-kissing-prosecco-bar-800w.jpg 800w, photos/gallery/weddings/wedding-couple-kissing-prosecco-bar-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Wedding couple sharing a kiss beside the Bubbles and Brews prosecco bar" loading="lazy"><span>Weddings</span></div>
+  <div class="g-tile tall" data-category="venues"><img src="photos/gallery/venues/alberta-boho-styled-mobile-bar-professional.jpg" srcset="photos/gallery/venues/alberta-boho-styled-mobile-bar-professional.jpg 1600w, photos/gallery/venues/alberta-boho-styled-mobile-bar-professional-1200w.jpg 1200w, photos/gallery/venues/alberta-boho-styled-mobile-bar-professional-800w.jpg 800w, photos/gallery/venues/alberta-boho-styled-mobile-bar-professional-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Professional photography of a boho-styled Bubbles and Brews mobile bar with a wicker peacock chair and pampas grass" loading="lazy"><span>Venues</span></div>
+  <div class="g-tile" data-category="weddings"><img src="photos/gallery/weddings/calgary-backyard-wedding-prosecco-bar-tablescape.jpg" srcset="photos/gallery/weddings/calgary-backyard-wedding-prosecco-bar-tablescape.jpg 1600w, photos/gallery/weddings/calgary-backyard-wedding-prosecco-bar-tablescape-1200w.jpg 1200w, photos/gallery/weddings/calgary-backyard-wedding-prosecco-bar-tablescape-800w.jpg 800w, photos/gallery/weddings/calgary-backyard-wedding-prosecco-bar-tablescape-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Calgary backyard wedding reception with a long banquet table and floral arch beside the Bubbles and Brews prosecco bar" loading="lazy"><span>Weddings</span></div>
+  <div class="g-tile" data-category="weddings"><img src="photos/gallery/weddings/calgary-estate-wedding-tablescape-mobile-bar.jpg" srcset="photos/gallery/weddings/calgary-estate-wedding-tablescape-mobile-bar.jpg 1600w, photos/gallery/weddings/calgary-estate-wedding-tablescape-mobile-bar-1200w.jpg 1200w, photos/gallery/weddings/calgary-estate-wedding-tablescape-mobile-bar-800w.jpg 800w, photos/gallery/weddings/calgary-estate-wedding-tablescape-mobile-bar-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Wide view of a Calgary estate wedding tablescape with the mobile bar and fireplace backdrop" loading="lazy"><span>Weddings</span></div>
+  <div class="g-tile wide" data-category="venues"><img src="photos/gallery/venues/calgary-mobile-bar-floral-garland-golden-hour.jpg" srcset="photos/gallery/venues/calgary-mobile-bar-floral-garland-golden-hour.jpg 1600w, photos/gallery/venues/calgary-mobile-bar-floral-garland-golden-hour-1200w.jpg 1200w, photos/gallery/venues/calgary-mobile-bar-floral-garland-golden-hour-800w.jpg 800w, photos/gallery/venues/calgary-mobile-bar-floral-garland-golden-hour-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Calgary mobile bar styled with a floral garland on the cab at golden hour" loading="lazy"><span>Venues</span></div>
+  <div class="g-tile" data-category="venues"><img src="photos/gallery/venues/calgary-prosecco-bar-dusk-floral-garland.jpg" srcset="photos/gallery/venues/calgary-prosecco-bar-dusk-floral-garland.jpg 1600w, photos/gallery/venues/calgary-prosecco-bar-dusk-floral-garland-1200w.jpg 1200w, photos/gallery/venues/calgary-prosecco-bar-dusk-floral-garland-800w.jpg 800w, photos/gallery/venues/calgary-prosecco-bar-dusk-floral-garland-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Calgary prosecco bar glowing at dusk with a full floral garland and fireplace venue backdrop" loading="lazy"><span>Venues</span></div>
+  <div class="g-tile tall" data-category="venues"><img src="photos/gallery/venues/calgary-estate-venue-mobile-bar-dusk.jpg" srcset="photos/gallery/venues/calgary-estate-venue-mobile-bar-dusk.jpg 1600w, photos/gallery/venues/calgary-estate-venue-mobile-bar-dusk-1200w.jpg 1200w, photos/gallery/venues/calgary-estate-venue-mobile-bar-dusk-800w.jpg 800w, photos/gallery/venues/calgary-estate-venue-mobile-bar-dusk-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Bubbles and Brews mobile bar at dusk beside an elegant outdoor fireplace at a Calgary estate venue" loading="lazy"><span>Venues</span></div>
+  <div class="g-tile" data-category="venues"><img src="photos/gallery/venues/calgary-estate-venue-mobile-bar-moody-dusk.jpg" srcset="photos/gallery/venues/calgary-estate-venue-mobile-bar-moody-dusk.jpg 1242w, photos/gallery/venues/calgary-estate-venue-mobile-bar-moody-dusk-1200w.jpg 1200w, photos/gallery/venues/calgary-estate-venue-mobile-bar-moody-dusk-800w.jpg 800w, photos/gallery/venues/calgary-estate-venue-mobile-bar-moody-dusk-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Moody dusk view of the mobile bar at a Calgary estate venue with a stylized film-grain look" loading="lazy"><span>Venues</span></div>
+  <div class="g-tile" data-category="venues"><img src="photos/gallery/venues/okotoks-rustic-barn-venue-prosecco-bar.jpg" srcset="photos/gallery/venues/okotoks-rustic-barn-venue-prosecco-bar.jpg 1600w, photos/gallery/venues/okotoks-rustic-barn-venue-prosecco-bar-1200w.jpg 1200w, photos/gallery/venues/okotoks-rustic-barn-venue-prosecco-bar-800w.jpg 800w, photos/gallery/venues/okotoks-rustic-barn-venue-prosecco-bar-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Bubbles and Brews prosecco bar parked in front of a weathered rustic barn near Okotoks, Alberta" loading="lazy"><span>Venues</span></div>
+  <div class="g-tile wide" data-category="parties"><img src="photos/gallery/parties/calgary-evening-park-event-mobile-bar.jpg" srcset="photos/gallery/parties/calgary-evening-park-event-mobile-bar.jpg 1600w, photos/gallery/parties/calgary-evening-park-event-mobile-bar-1200w.jpg 1200w, photos/gallery/parties/calgary-evening-park-event-mobile-bar-800w.jpg 800w, photos/gallery/parties/calgary-evening-park-event-mobile-bar-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Bubbles and Brews mobile bar at an evening park event in Calgary with string lights and picnic tables" loading="lazy"><span>Parties &amp; Celebrations</span></div>
+  <div class="g-tile" data-category="parties"><img src="photos/gallery/parties/calgary-backyard-party-mobile-bar-balloons.jpg" srcset="photos/gallery/parties/calgary-backyard-party-mobile-bar-balloons.jpg 1600w, photos/gallery/parties/calgary-backyard-party-mobile-bar-balloons-1200w.jpg 1200w, photos/gallery/parties/calgary-backyard-party-mobile-bar-balloons-800w.jpg 800w, photos/gallery/parties/calgary-backyard-party-mobile-bar-balloons-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Bubbles and Brews mobile bar at a Calgary backyard party with a balloon garland and flamingo decor" loading="lazy"><span>Parties &amp; Celebrations</span></div>
+  <div class="g-tile" data-category="parties"><img src="photos/gallery/parties/mobile-bar-yellow-dress-guest-portrait.jpg" srcset="photos/gallery/parties/mobile-bar-yellow-dress-guest-portrait.jpg 1600w, photos/gallery/parties/mobile-bar-yellow-dress-guest-portrait-1200w.jpg 1200w, photos/gallery/parties/mobile-bar-yellow-dress-guest-portrait-800w.jpg 800w, photos/gallery/parties/mobile-bar-yellow-dress-guest-portrait-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Guest in a yellow dress posed in the open mobile bar cab" loading="lazy"><span>Parties &amp; Celebrations</span></div>
+  <div class="g-tile tall" data-category="golf"><img src="photos/gallery/golf/alberta-golf-tournament-mobile-bar-group.jpg" srcset="photos/gallery/golf/alberta-golf-tournament-mobile-bar-group.jpg 1600w, photos/gallery/golf/alberta-golf-tournament-mobile-bar-group-1200w.jpg 1200w, photos/gallery/golf/alberta-golf-tournament-mobile-bar-group-800w.jpg 800w, photos/gallery/golf/alberta-golf-tournament-mobile-bar-group-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Group of golfers gathered around the Bubbles and Brews mobile bar at an Alberta golf tournament" loading="lazy"><span>Golf Tournaments</span></div>
+  <div class="g-tile" data-category="golf"><img src="photos/gallery/golf/alberta-golf-tournament-mobile-bar-cart-parade.jpg" srcset="photos/gallery/golf/alberta-golf-tournament-mobile-bar-cart-parade.jpg 1600w, photos/gallery/golf/alberta-golf-tournament-mobile-bar-cart-parade-1200w.jpg 1200w, photos/gallery/golf/alberta-golf-tournament-mobile-bar-cart-parade-800w.jpg 800w, photos/gallery/golf/alberta-golf-tournament-mobile-bar-cart-parade-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Bubbles and Brews mobile bar lined up with a row of golf carts at an Alberta golf tournament" loading="lazy"><span>Golf Tournaments</span></div>
+  <div class="g-tile" data-category="corporate"><img src="photos/gallery/corporate/autumn-storefront-mobile-bar-activation.jpg" srcset="photos/gallery/corporate/autumn-storefront-mobile-bar-activation.jpg 1600w, photos/gallery/corporate/autumn-storefront-mobile-bar-activation-1200w.jpg 1200w, photos/gallery/corporate/autumn-storefront-mobile-bar-activation-800w.jpg 800w, photos/gallery/corporate/autumn-storefront-mobile-bar-activation-480w.jpg 480w" sizes="(max-width: 700px) 50vw, 25vw" alt="Bubbles and Brews mobile bar activation outside a storefront in autumn, styled with mini pumpkins and pampas grass" loading="lazy"><span>Corporate</span></div>
+</div>
+
+<script>
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const tiles = document.querySelectorAll('.g-tile');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      tiles.forEach(tile => {
+        if (filter === 'all' || tile.dataset.category === filter) {
+          tile.style.display = '';
+        } else {
+          tile.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  // Lightbox
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxCaption = document.getElementById('lightbox-caption');
+  let currentIndex = 0;
+
+  function visibleTiles() {
+    return Array.from(tiles).filter(t => t.style.display !== 'none');
+  }
+
+  function openLightbox(tile) {
+    const visible = visibleTiles();
+    currentIndex = visible.indexOf(tile);
+    showCurrent();
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function showCurrent() {
+    const visible = visibleTiles();
+    if (!visible.length) return;
+    if (currentIndex < 0) currentIndex = visible.length - 1;
+    if (currentIndex >= visible.length) currentIndex = 0;
+    const img = visible[currentIndex].querySelector('img');
+    lightboxImg.src = img.src;
+    lightboxImg.alt = img.alt;
+    lightboxCaption.textContent = img.alt;
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  tiles.forEach(tile => {
+    tile.querySelector('img').addEventListener('click', () => openLightbox(tile));
+  });
+
+  document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+  document.getElementById('lightbox-prev').addEventListener('click', () => { currentIndex--; showCurrent(); });
+  document.getElementById('lightbox-next').addEventListener('click', () => { currentIndex++; showCurrent(); });
+
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') { currentIndex--; showCurrent(); }
+    if (e.key === 'ArrowRight') { currentIndex++; showCurrent(); }
+  });
+</script>
+
+<section class="cta-strip">
+  <h2>Ready to picture this at your event?</h2>
+  <p>Tell us your date and guest count, and let's talk through what's possible.</p>
+  <a class='pkg-btn' href='/inquire'>Get a quote</a>
+</section>
+
+</main>
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h3>Bubbles and Brews Canada</h3>
+      <p style="font-size:14px; opacity:0.85; line-height:1.6; max-width:240px;">A vintage Piaggio Ape mobile bar serving Calgary, Banff, and Canmore.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Explore</h3>
+      <a href='/our-story'>Our Story</a>
+      <a href='/packages'>Packages</a>
+      <a href='/what-we-pour'>What We Pour</a>
+      <a href='/gallery'>Gallery</a>
+      <a href='/frozen-bar'>The Frozen Bar</a>
+      <a href='/faq'>FAQ</a>
+    </div>
+    <div class="footer-col">
+      <h3>Get in touch</h3>
+      <a href='/inquire'>Let's talk</a>
+      <a href="tel:4033830900">403.383.0900</a>
+      <a href="mailto:cindy@bubblesandbrews.ca">cindy@bubblesandbrews.ca</a>
+      <a href="https://instagram.com/bubblesandbrewscanada" target="_blank" rel="noopener">@bubblesandbrewscanada</a>
+    </div>
+  </div>
+  <div class="footer-bottom">Bubbles and Brews Canada &middot; Calgary, Alberta &middot; Bubbles and Brews Canada is a registered trademark</div>
+</footer>
+
+</body>
+</html>

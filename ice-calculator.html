@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ice Calculator for Events | Calgary Mobile Bar — Bubbles and Brews Canada</title>
+<meta name="description" content="Free ice calculator for weddings and events. Figure out how much serving and cooling ice you need, from Calgary's vintage Piaggio Ape mobile bar.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"></noscript>
+<style>
+  :root {
+    --cream: #FAF6EE; --cream-deep: #F1E9D8; --sand: #E4D7BE;
+    --terracotta: #965C43; --olive: #6B7256; --ink: #3A3530;
+    --ink-soft: #6B6358; --white: #FFFFFF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Jost', sans-serif; color: var(--ink); background: var(--cream); line-height: 1.7; }
+  h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 500; }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 32px; }
+  nav { display: flex; align-items: center; justify-content: space-between; padding: 20px 32px; max-width: 1180px; margin: 0 auto; position: sticky; top: 0; z-index: 100; background: var(--cream); border-bottom: 1px solid var(--cream-deep); }
+  .logo a { color: var(--ink); text-decoration: none; font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 500; }
+  .logo span { color: var(--terracotta); font-style: italic; }
+  .logo .sub { font-style: normal; font-size: 14px; color: var(--ink-soft); }
+  .navlinks { display: flex; gap: 20px; font-size: 13px; letter-spacing: 0.025em; text-transform: uppercase; }
+  .navlinks a { color: var(--ink); text-decoration: none; }
+  .nav-dropdown { position: relative; }
+  .nav-dropdown-panel {
+    position: absolute;
+    top: 28px;
+    left: -16px;
+    background: var(--white);
+    border: 1px solid var(--sand);
+    border-radius: 6px;
+    padding: 8px 0;
+    min-width: 200px;
+    box-shadow: 0 8px 24px rgba(58,53,48,0.08);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px);
+    transition: opacity 0.15s, transform 0.15s, visibility 0.15s;
+    z-index: 50;
+  }
+  .nav-dropdown:hover .nav-dropdown-panel,
+  .nav-dropdown:focus-within .nav-dropdown-panel {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .nav-dropdown-panel a {
+    display: block;
+    padding: 10px 18px;
+    font-size: 13px;
+    text-transform: none;
+    letter-spacing: 0.01em;
+    color: var(--ink);
+  }
+  .nav-dropdown-panel a:hover { background: var(--cream-deep); color: var(--terracotta); }
+  .navlinks a.active { color: var(--terracotta); border-bottom: 1px solid var(--terracotta); padding-bottom: 4px; }
+  .nav-cta { border: 1px solid var(--ink); padding: 10px 24px; font-size: 13px; letter-spacing: 0.05em; text-transform: uppercase; border-radius: 2px; color: var(--ink) !important; text-decoration: none !important; background: transparent; }
+  .nav-cta:hover { background: var(--ink); color: var(--white) !important; }
+  .menu-toggle { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 32px; height: 32px; background: none; border: none; cursor: pointer; padding: 0; }
+  .menu-toggle span { display: block; height: 2px; width: 100%; background: var(--ink); }
+  .mobile-menu { display: none; flex-direction: column; background: var(--white); border-bottom: 1px solid var(--sand); overflow: hidden; max-height: 0; transition: max-height 0.25s ease; position: sticky; top: 68px; z-index: 99; }
+  .mobile-menu.open { max-height: 540px; }
+  .mobile-menu a { padding: 16px 32px; font-size: 15px; letter-spacing: 0.03em; text-transform: uppercase; color: var(--ink); text-decoration: none; border-top: 1px solid var(--cream-deep); }
+  .mobile-menu a.active { color: var(--terracotta); }
+  .mobile-menu a.mm-cta { color: var(--terracotta); font-weight: 500; }
+  .mobile-menu a.mm-sub { padding-left: 48px; font-size: 13.5px; color: var(--ink-soft); border-top: none; }
+
+  .page-hero { padding: 64px 0 16px; text-align: center; }
+  .eyebrow { color: var(--terracotta); font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 14px; }
+  .page-hero h1 { font-size: 40px; margin-bottom: 14px; }
+  .page-hero p { color: var(--ink-soft); font-size: 16px; max-width: 600px; margin: 0 auto; }
+
+  .calc-box {
+    background: var(--white);
+    border: 1px solid var(--sand);
+    border-radius: 10px;
+    padding: 40px;
+    margin: 48px auto;
+    max-width: 720px;
+  }
+  .calc-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; }
+  .calc-group label { display: block; font-size: 13px; color: var(--ink-soft); margin-bottom: 8px; }
+  .calc-group input, .calc-group select {
+    width: 100%; padding: 13px 14px; border: 1px solid var(--sand); border-radius: 4px;
+    font-family: 'Jost', sans-serif; font-size: 15px; background: var(--cream);
+  }
+  .calc-btn {
+    width: 100%; background: var(--terracotta); color: var(--white); border: none;
+    padding: 16px; font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase;
+    border-radius: 4px; cursor: pointer; margin-top: 8px;
+  }
+  .calc-btn:hover { background: #B36849; }
+
+  .result-box {
+    display: none;
+    margin-top: 32px;
+    padding: 28px 30px;
+    background: var(--cream-deep);
+    border-radius: 8px;
+    border-left: 4px solid var(--terracotta);
+  }
+  .result-box.show { display: block; }
+  .result-headline { font-family: 'Cormorant Garamond', serif; font-size: 30px; margin-bottom: 14px; }
+  .result-split { display: flex; gap: 32px; margin: 18px 0; flex-wrap: wrap; }
+  .result-stat { flex: 1; min-width: 140px; }
+  .result-stat .num { font-family: 'Cormorant Garamond', serif; font-size: 32px; color: var(--terracotta); }
+  .result-stat .label { font-size: 12.5px; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.05em; }
+  .result-note { font-size: 14px; color: var(--ink-soft); margin-top: 12px; }
+
+  .explainer {
+    background: var(--white);
+    padding: 72px 0;
+  }
+  .explainer h2 { font-size: 30px; margin-bottom: 20px; text-align: center; }
+  .explainer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 36px; }
+  .explainer-card { padding: 4px; }
+  .explainer-card h3 { font-size: 19px; margin-bottom: 10px; }
+  .explainer-card p { font-size: 14.5px; color: var(--ink-soft); }
+
+  .cta-strip { background: var(--cream-deep); padding: 64px 0; text-align: center; }
+  .cta-strip h2 { font-size: 28px; margin-bottom: 12px; }
+  .cta-strip p { color: var(--ink-soft); margin-bottom: 22px; }
+  .pkg-btn { display: inline-block; background: var(--terracotta); color: var(--white); padding: 14px 32px; font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; border-radius: 2px; text-decoration: none; }
+
+  footer { background: var(--ink); color: var(--sand); padding: 56px 0 28px; }
+  .footer-grid { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 40px; max-width: 1180px; margin: 0 auto 40px; padding: 0 32px; }
+  .footer-col h4 { color: var(--white); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 400; margin-bottom: 16px; opacity: 0.8; }
+  .footer-col a { display: block; color: var(--sand); text-decoration: none; font-size: 14.5px; padding: 6px 0; opacity: 0.9; }
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.12); padding-top: 22px; text-align: center; font-size: 12.5px; opacity: 0.7; max-width: 1180px; margin: 0 auto; padding-left: 32px; padding-right: 32px; }
+
+  @media (max-width: 860px) {
+    .navlinks, .nav-cta { display: none; }
+    .menu-toggle { display: flex; }
+    .mobile-menu { display: flex; }
+    .footer-grid { grid-template-columns: 1fr; gap: 32px; text-align: left; }
+    .more-resources-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 480px) {
+    .page-hero h1 { font-size: 28px; }
+    .calc-box { padding: 28px 22px; }
+    .calc-row { grid-template-columns: 1fr; gap: 16px; }
+    .explainer-grid { grid-template-columns: 1fr; }
+    .result-split { gap: 20px; }
+  }
+  .more-resources { background: var(--cream-deep); padding: 64px 0; }
+  .more-resources h2 { text-align: center; font-size: 28px; margin-bottom: 36px; }
+  .more-resources-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 760px; margin: 0 auto; }
+  .more-resources-card { background: var(--white); border: 1px solid var(--sand); border-radius: 8px; padding: 26px 24px; text-decoration: none; color: var(--ink); display: block; }
+  .more-resources-card:hover { border-color: var(--terracotta); }
+  .more-resources-card .tag { font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--terracotta); margin-bottom: 8px; }
+  .more-resources-card h3 { font-size: 19px; margin-bottom: 8px; }
+  .more-resources-card p { font-size: 13.5px; color: var(--ink-soft); }
+  .more-resources-all { text-align: center; margin-top: 28px; }
+  .more-resources-all a { font-size: 13px; color: var(--terracotta); text-decoration: none; border-bottom: 1px solid var(--terracotta); padding-bottom: 3px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo"><a href='/'>Bubbles <span>and</span> Brews <span class="sub">Canada</span></a></div>
+  <div class="navlinks">
+    <a href='/our-story'>Our Story</a>
+    <a href='/packages'>Packages</a>
+    <a href='/what-we-pour'>What We Pour</a>
+    <a href='/gallery'>Gallery</a>
+    <a href='/frozen-bar'>The Frozen Bar</a>
+    <div class="nav-dropdown">
+      <a class='active' href='/resources'>Resources</a>
+      <div class="nav-dropdown-panel">
+        <a href='/ice-calculator'>Ice Calculator</a>
+        <a href='/drink-calculator'>Drink Calculator</a>
+        <a href='/trending-cocktails'>Trending Cocktails</a>
+      </div>
+    </div>
+    <a href='/faq'>FAQ</a>
+  </div>
+  <a class='nav-cta' href='/inquire'>Let's talk</a>
+  <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" onclick="document.getElementById('mobile-menu').classList.toggle('open'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded')==='false');">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<main>
+<div class="mobile-menu" id="mobile-menu">
+  <a href='/our-story'>Our Story</a>
+  <a href='/packages'>Packages</a>
+  <a href='/what-we-pour'>What We Pour</a>
+  <a href='/gallery'>Gallery</a>
+  <a href='/frozen-bar'>The Frozen Bar</a>
+  <a class='active' href='/resources'>Resources</a>
+  <a href='/faq'>FAQ</a>
+  <a class='mm-cta' href='/inquire'>Let's talk</a>
+</div>
+
+<section class="page-hero">
+  <div class="eyebrow">Free planning tool</div>
+  <h1>Ice Calculator</h1>
+  <p>Running out of ice mid-event is the kind of thing nobody plans for until it happens. Here's roughly how much you actually need.</p>
+</section>
+
+<div class="wrap">
+  <div class="calc-box">
+    <div class="calc-row">
+      <div class="calc-group">
+        <label for="guests">Guest count</label>
+        <input type="number" id="guests" placeholder="e.g. 80" min="1">
+      </div>
+      <div class="calc-group">
+        <label for="hours">Event length (hours)</label>
+        <input type="number" id="hours" placeholder="e.g. 6" min="1">
+      </div>
+    </div>
+    <div class="calc-row">
+      <div class="calc-group">
+        <label for="season">Season / temperature</label>
+        <select id="season">
+          <option value="1">Cool (spring, fall, indoor)</option>
+          <option value="1.25">Warm (typical Calgary summer day)</option>
+          <option value="1.5">Hot (30°C+, full sun)</option>
+        </select>
+      </div>
+      <div class="calc-group">
+        <label for="indooroutdoor">Setting</label>
+        <select id="indooroutdoor">
+          <option value="1">Indoor / shaded</option>
+          <option value="1.1">Outdoor, partial shade</option>
+          <option value="1.2">Outdoor, full sun</option>
+        </select>
+      </div>
+    </div>
+    <button class="calc-btn" onclick="calculateIce()">Calculate my ice needs</button>
+
+    <div class="result-box" id="result">
+      <div class="result-headline" id="result-total"></div>
+      <div class="result-split">
+        <div class="result-stat">
+          <div class="num" id="result-serving"></div>
+          <div class="label">Serving ice (lbs)</div>
+        </div>
+        <div class="result-stat">
+          <div class="num" id="result-cooling"></div>
+          <div class="label">Cooling ice (lbs)</div>
+        </div>
+        <div class="result-stat">
+          <div class="num" id="result-bags"></div>
+          <div class="label">~8lb bags</div>
+        </div>
+      </div>
+      <p class="result-note">This is a planning estimate, not an exact figure — always round up, and remember that bagged ice from a gas station or grocery store is cheap insurance against running short.</p>
+    </div>
+  </div>
+</div>
+
+<section class="explainer">
+  <div class="wrap">
+    <h2>Serving ice vs. cooling ice — they're not the same job</h2>
+    <div class="explainer-grid">
+      <div class="explainer-card">
+        <h3>Serving ice</h3>
+        <p>This is the ice that goes directly into a guest's glass. It needs to be clean, food-safe, and handled separately from anything else — never scoop serving ice with a cup that's touched cooling ice or a cooler drain.</p>
+      </div>
+      <div class="explainer-card">
+        <h3>Cooling ice</h3>
+        <p>This is the ice packed around bottles, cans, or kegs to keep them cold — it doesn't need to be food-grade-handled the same way, since it never touches a drink directly, but it still needs to be kept separate to avoid contaminating your serving ice supply.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-strip">
+  <h2>Want to skip the ice math entirely?</h2>
+  <p>Every Bubbles and Brews package includes drinkware, ice, and the essentials for typical guest counts — larger events may need a consumables add-on, which we'll flag with you upfront.</p>
+  <a class='pkg-btn' href='/packages'>See our packages</a>
+</section>
+
+<section class="more-resources">
+  <div class="wrap">
+    <h2>More planning resources</h2>
+    <div class="more-resources-grid">
+      <a class='more-resources-card' href='/drink-calculator'>
+        <div class="tag">Free tool</div>
+        <h3>Drink Calculator</h3>
+        <p>How much wine, beer, and spirits to buy for your guest count.</p>
+      </a>
+      <a class='more-resources-card' href='/trending-cocktails'>
+        <div class="tag">Free tool</div>
+        <h3>Trending Cocktails</h3>
+        <p>What's trending in 2026, plus a few classics that never go out of style.</p>
+      </a>    </div>
+    <div class="more-resources-all"><a href='/resources'>See all resources &rarr;</a></div>
+  </div>
+</section>
+
+</main>
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h4>Bubbles and Brews Canada</h4>
+      <p style="font-size:14px; opacity:0.85; line-height:1.6; max-width:240px;">A vintage Piaggio Ape mobile bar serving Calgary, Banff, and Canmore.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <a href='/our-story'>Our Story</a>
+      <a href='/packages'>Packages</a>
+      <a href='/frozen-bar'>The Frozen Bar</a>
+      <a href='/resources'>Resources</a>
+      <a href='/faq'>FAQ</a>
+    </div>
+    <div class="footer-col">
+      <h4>Get in touch</h4>
+      <a href='/inquire'>Let's talk</a>
+      <a href="tel:4033830900">403.383.0900</a>
+      <a href="https://instagram.com/bubblesandbrewscanada" target="_blank" rel="noopener">@bubblesandbrewscanada</a>
+    </div>
+  </div>
+  <div class="footer-bottom">Bubbles and Brews Canada &middot; Calgary, Alberta &middot; Bubbles and Brews Canada is a registered trademark</div>
+</footer>
+
+<script>
+function calculateIce() {
+  const guests = parseFloat(document.getElementById('guests').value) || 0;
+  const hours = parseFloat(document.getElementById('hours').value) || 0;
+  const seasonMult = parseFloat(document.getElementById('season').value);
+  const settingMult = parseFloat(document.getElementById('indooroutdoor').value);
+
+  if (guests <= 0 || hours <= 0) {
+    alert('Please enter both a guest count and event length to calculate.');
+    return;
+  }
+
+  // Base: ~1lb serving ice per guest for first 4 hours, scaling modestly with longer events
+  const hourFactor = 1 + Math.max(0, (hours - 4)) * 0.08;
+  const servingBase = guests * 1.0 * hourFactor;
+  const servingIce = Math.ceil(servingBase * seasonMult * settingMult);
+
+  // Cooling ice: roughly 1.25lb per guest, also scaling with heat/sun/duration
+  const coolingBase = guests * 1.25 * hourFactor;
+  const coolingIce = Math.ceil(coolingBase * seasonMult * settingMult);
+
+  const total = servingIce + coolingIce;
+  const bags = Math.ceil(total / 8);
+
+  document.getElementById('result-total').textContent = `About ${total} lbs of ice total`;
+  document.getElementById('result-serving').textContent = servingIce;
+  document.getElementById('result-cooling').textContent = coolingIce;
+  document.getElementById('result-bags').textContent = bags;
+  document.getElementById('result').classList.add('show');
+}
+</script>
+
+</body>
+</html>

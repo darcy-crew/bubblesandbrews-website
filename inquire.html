@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Get a Quote | Mobile Bar Calgary — Bubbles and Brews Canada</title>
+<meta name="description" content="Request a quote for your Calgary, Banff, or Canmore event. Tell us your date and guest count and we'll get back to you fast.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"></noscript>
+<style>
+  :root {
+    --cream: #FAF6EE; --cream-deep: #F1E9D8; --sand: #E4D7BE;
+    --terracotta: #965C43; --olive: #6B7256; --ink: #3A3530;
+    --ink-soft: #6B6358; --white: #FFFFFF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Jost', sans-serif; color: var(--ink); background: var(--cream); line-height: 1.7; }
+  h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 500; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+  nav { display: flex; align-items: center; justify-content: space-between; padding: 20px 32px; max-width: 1180px; margin: 0 auto; position: sticky; top: 0; z-index: 100; background: var(--cream); border-bottom: 1px solid var(--cream-deep); }
+  .logo { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 500; }
+  .logo a { color: var(--ink); text-decoration: none; }
+  .logo span { color: var(--terracotta); font-style: italic; }
+  .logo .sub { font-style: normal; font-size: 14px; color: var(--ink-soft); }
+  .navlinks { display: flex; gap: 20px; font-size: 13px; letter-spacing: 0.025em; text-transform: uppercase; }
+  .navlinks a { color: var(--ink); text-decoration: none; }
+  .nav-dropdown { position: relative; }
+  .nav-dropdown-panel {
+    position: absolute;
+    top: 28px;
+    left: -16px;
+    background: var(--white);
+    border: 1px solid var(--sand);
+    border-radius: 6px;
+    padding: 8px 0;
+    min-width: 200px;
+    box-shadow: 0 8px 24px rgba(58,53,48,0.08);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px);
+    transition: opacity 0.15s, transform 0.15s, visibility 0.15s;
+    z-index: 50;
+  }
+  .nav-dropdown:hover .nav-dropdown-panel,
+  .nav-dropdown:focus-within .nav-dropdown-panel {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .nav-dropdown-panel a {
+    display: block;
+    padding: 10px 18px;
+    font-size: 13px;
+    text-transform: none;
+    letter-spacing: 0.01em;
+    color: var(--ink);
+  }
+  .nav-dropdown-panel a:hover { background: var(--cream-deep); color: var(--terracotta); }
+  .navlinks a.active { color: var(--terracotta); border-bottom: 1px solid var(--terracotta); padding-bottom: 4px; }
+  .nav-cta {
+    border: 1px solid var(--ink); padding: 10px 24px; font-size: 13px; letter-spacing: 0.05em;
+    text-transform: uppercase; border-radius: 2px; color: var(--ink) !important;
+    text-decoration: none !important; background: transparent; transition: background 0.15s, color 0.15s;
+  }
+  .nav-cta:hover { background: var(--ink); color: var(--white) !important; }
+  .nav-cta.current { background: var(--ink); color: var(--white) !important; }
+
+  .page-hero { padding: 72px 0 16px; text-align: center; }
+  .eyebrow { color: var(--terracotta); font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 14px; }
+  .page-hero h1 { font-size: 44px; margin-bottom: 14px; }
+  .page-hero p { color: var(--ink-soft); font-size: 16.5px; max-width: 560px; margin: 0 auto; }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 64px;
+    max-width: 1080px;
+    margin: 56px auto 100px;
+    padding: 0 32px;
+  }
+
+  .direct-card {
+    background: var(--ink);
+    color: var(--cream);
+    border-radius: 8px;
+    padding: 40px 36px;
+  }
+  .direct-card h2 { color: var(--white); font-size: 22px; margin-bottom: 10px; }
+  .direct-card p.lead { color: var(--sand); font-size: 14.5px; margin-bottom: 32px; }
+  .direct-row { border-top: 1px solid rgba(255,255,255,0.15); padding: 18px 0; }
+  .direct-row:first-of-type { border-top: none; padding-top: 0; }
+  .direct-row .label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--sand); opacity: 0.7; margin-bottom: 6px; }
+  .direct-row a { color: var(--white); text-decoration: none; font-size: 17px; }
+  .direct-note { margin-top: 28px; font-size: 13px; color: var(--sand); opacity: 0.85; line-height: 1.6; }
+
+  form { display: flex; flex-direction: column; gap: 18px; }
+  .form-label { font-size: 13px; color: var(--ink-soft); margin-bottom: 6px; display: block; }
+  form input, form select, form textarea {
+    width: 100%;
+    background: var(--white);
+    border: 1px solid var(--sand);
+    color: var(--ink);
+    padding: 14px 16px;
+    font-family: 'Jost', sans-serif;
+    font-size: 14.5px;
+    border-radius: 4px;
+  }
+  form input:focus, form select:focus, form textarea:focus { outline: 1px solid var(--terracotta); border-color: var(--terracotta); }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-group { display: flex; flex-direction: column; }
+  form button {
+    background: var(--terracotta); color: var(--white); border: none; padding: 16px;
+    font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase; border-radius: 4px;
+    cursor: pointer; margin-top: 8px; font-family: 'Jost', sans-serif;
+  }
+  form button:hover { background: #B36849; }
+  .form-hint { font-size: 12.5px; color: var(--ink-soft); margin-top: -6px; }
+
+  .site-check {
+    background: var(--cream-deep);
+    border-left: 3px solid var(--terracotta);
+    padding: 16px 20px;
+    font-size: 13.5px;
+    color: var(--ink);
+    margin-top: 4px;
+  }
+  footer {
+    background: var(--ink);
+    color: var(--sand);
+    padding: 56px 0 28px;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr;
+    gap: 40px;
+    max-width: 1180px;
+    margin: 0 auto 40px;
+    padding: 0 32px;
+  }
+  .footer-col h3 {
+    color: var(--white);
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 400;
+    margin-bottom: 16px;
+    opacity: 0.8;
+  }
+  .footer-col a {
+    display: block;
+    color: var(--sand);
+    text-decoration: none;
+    font-size: 14.5px;
+    padding: 6px 0;
+    opacity: 0.9;
+  }
+  .footer-col a:hover { opacity: 1; text-decoration: underline; }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.12);
+    padding-top: 22px;
+    text-align: center;
+    font-size: 12.5px;
+    opacity: 0.7;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 32px;
+    height: 32px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+  .menu-toggle span {
+    display: block;
+    height: 2px;
+    width: 100%;
+    background: var(--ink);
+  }
+  .mobile-menu {
+    display: none;
+    flex-direction: column;
+    background: var(--white);
+    border-bottom: 1px solid var(--sand);
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.25s ease;
+    position: sticky;
+    top: 68px;
+    z-index: 99;
+  }
+  .mobile-menu.open { max-height: 540px; }
+  .mobile-menu a {
+    padding: 16px 32px;
+    font-size: 15px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    border-top: 1px solid var(--cream-deep);
+  }
+  .mobile-menu a.active { color: var(--terracotta); }
+  .mobile-menu a.mm-cta { color: var(--terracotta); font-weight: 500; }
+  .mobile-menu a.mm-sub { padding-left: 48px; font-size: 13.5px; color: var(--ink-soft); border-top: none; }
+
+  @media (max-width: 860px) {
+    .navlinks, .nav-cta { display: none; }
+    .menu-toggle { display: flex; }
+    .mobile-menu { display: flex; }
+    .footer-grid { grid-template-columns: 1fr; gap: 32px; text-align: left; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 480px) {
+    .page-hero h1 { font-size: 32px; }
+    .page-hero { padding: 56px 0 12px; }
+    .direct-card { padding: 28px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo"><a href='/'>Bubbles <span>and</span> Brews <span class="sub">Canada</span></a></div>
+  <div class="navlinks">
+    <a href='/our-story'>Our Story</a>
+    <a href='/packages'>Packages</a>
+    <a href='/what-we-pour'>What We Pour</a>
+    <a href='/gallery'>Gallery</a>
+    <a href='/frozen-bar'>The Frozen Bar</a>
+    <div class="nav-dropdown">
+      <a href='/resources'>Resources</a>
+      <div class="nav-dropdown-panel">
+        <a href='/ice-calculator'>Ice Calculator</a>
+        <a href='/drink-calculator'>Drink Calculator</a>
+        <a href='/trending-cocktails'>Trending Cocktails</a>
+      </div>
+    </div>
+          <a href='/faq'>FAQ</a>
+  </div>
+  <a class='nav-cta current' href='/inquire'>Let's talk</a>
+  <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" onclick="document.getElementById('mobile-menu').classList.toggle('open'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded')==='false');">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<main>
+<div class="mobile-menu" id="mobile-menu">
+  <a href='/our-story'>Our Story</a>
+  <a href='/packages'>Packages</a>
+  <a href='/what-we-pour'>What We Pour</a>
+  <a href='/gallery'>Gallery</a>
+  <a href='/frozen-bar'>The Frozen Bar</a>
+  <a href='/resources'>Resources</a>
+  <a href='/faq'>FAQ</a>
+  <a class='mm-cta' href='/inquire'>Let's talk</a>
+</div>
+
+
+<section class="page-hero">
+  <div class="eyebrow">Let's talk</div>
+  <h1>Tell us about your event</h1>
+  <p>Fill out the form and we'll get back to you — most people end up chatting with Cindy directly.</p>
+</section>
+
+<div class="contact-grid">
+  <div class="direct-card">
+    <h2>Reach us directly</h2>
+    <p class="lead">Prefer to skip the form? So does Cindy, honestly.</p>
+    <div class="direct-row">
+      <div class="label">Phone</div>
+      <a href="tel:4033830900">403.383.0900</a>
+    </div>
+    <div class="direct-row">
+      <div class="label">Email</div>
+      <a href="mailto:cindy@bubblesandbrews.ca">cindy@bubblesandbrews.ca</a>
+      <a href="https://instagram.com/bubblesandbrewscanada" target="_blank" rel="noopener">@bubblesandbrewscanada</a>
+    </div>
+    <div class="direct-row">
+      <div class="label">Service area</div>
+      <span style="font-size:15px;">Calgary &middot; Banff &middot; Canmore</span>
+    </div>
+    <p class="direct-note">Travel fee applies outside Calgary city limits. Need a quick gut-check on whether your space will work? See the site requirements note below before you write your essay.</p>
+  </div>
+
+  <form action='/thank-you' method='POST' name='event-inquiry'>
+    <input type="hidden" name="form-name" value="event-inquiry">
+    <p style="display:none;"><label>Don't fill this out: <input name="bot-field"></label></p>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">First name</label>
+        <input type="text" name="first-name" placeholder="First name" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Last name</label>
+        <input type="text" name="last-name" placeholder="Last name" required>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input type="email" name="email" placeholder="you@email.com" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Phone</label>
+        <input type="tel" name="phone" placeholder="(403) 555-0123">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Event date</label>
+        <input type="date" name="event-date">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Event type</label>
+        <select name="event-type">
+          <option value="">Select one</option>
+          <option>Wedding</option>
+          <option>Engagement party</option>
+          <option>Corporate event</option>
+          <option>Birthday party</option>
+          <option>Anniversary</option>
+          <option>Backyard BBQ / casual</option>
+          <option>Other</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Estimated guest count</label>
+        <input type="number" name="guest-count" placeholder="e.g. 80">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Venue location</label>
+        <input type="text" name="venue-location" placeholder="City or venue name">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Tell us about your event</label>
+      <textarea rows="4" name="message" placeholder="Drinks you're picturing, anything unusual about the space, questions you have..."></textarea>
+      <p class="form-hint">Worth mentioning here if you're unsure about gate width, slope, or access — we'll flag it before you book, not after.</p>
+    </div>
+    <button type="submit">Send inquiry</button>
+  </form>
+  <p id="form-status" style="display:none; margin-top:16px; padding:14px 18px; border-radius:4px; font-size:14px;"></p>
+</div>
+
+</main>
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h3>Bubbles and Brews Canada</h3>
+      <p style="font-size:14px; opacity:0.85; line-height:1.6; max-width:240px;">A vintage Piaggio Ape mobile bar serving Calgary, Banff, and Canmore.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Explore</h3>
+      <a href='/our-story'>Our Story</a>
+      <a href='/packages'>Packages</a>
+      <a href='/what-we-pour'>What We Pour</a>
+      <a href='/gallery'>Gallery</a>
+      <a href='/frozen-bar'>The Frozen Bar</a>
+      <a href='/faq'>FAQ</a>
+    </div>
+    <div class="footer-col">
+      <h3>Get in touch</h3>
+      <a href='/inquire'>Let's talk</a>
+      <a href="tel:4033830900">403.383.0900</a>
+      <a href="mailto:cindy@bubblesandbrews.ca">cindy@bubblesandbrews.ca</a>
+    </div>
+  </div>
+  <div class="footer-bottom">Bubbles and Brews Canada &middot; Calgary, Alberta &middot; Bubbles and Brews Canada is a registered trademark</div>
+</footer>
+
+</body>
+</html>

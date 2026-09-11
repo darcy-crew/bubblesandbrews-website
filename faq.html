@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQ | Mobile Bar Calgary Questions — Bubbles and Brews Canada</title>
+<meta name="description" content="Answers to common questions about booking a mobile bar in Calgary, Banff, or Canmore — licensing, site requirements, what's included, and more.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"></noscript>
+<style>
+  :root {
+    --cream: #FAF6EE; --cream-deep: #F1E9D8; --sand: #E4D7BE;
+    --terracotta: #965C43; --olive: #6B7256; --ink: #3A3530;
+    --ink-soft: #6B6358; --white: #FFFFFF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Jost', sans-serif; color: var(--ink); background: var(--cream); line-height: 1.7; }
+  h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 500; }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 32px; }
+  nav { display: flex; align-items: center; justify-content: space-between; padding: 20px 32px; max-width: 1180px; margin: 0 auto; position: sticky; top: 0; z-index: 100; background: var(--cream); border-bottom: 1px solid var(--cream-deep); }
+  .logo { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 500; }
+  .logo span { color: var(--terracotta); font-style: italic; }
+  .logo .sub { font-style: normal; font-size: 14px; color: var(--ink-soft); }
+  .navlinks { display: flex; gap: 20px; font-size: 13px; letter-spacing: 0.025em; text-transform: uppercase; }
+  .navlinks a { color: var(--ink); text-decoration: none; }
+  .nav-dropdown { position: relative; }
+  .nav-dropdown-panel {
+    position: absolute;
+    top: 28px;
+    left: -16px;
+    background: var(--white);
+    border: 1px solid var(--sand);
+    border-radius: 6px;
+    padding: 8px 0;
+    min-width: 200px;
+    box-shadow: 0 8px 24px rgba(58,53,48,0.08);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px);
+    transition: opacity 0.15s, transform 0.15s, visibility 0.15s;
+    z-index: 50;
+  }
+  .nav-dropdown:hover .nav-dropdown-panel,
+  .nav-dropdown:focus-within .nav-dropdown-panel {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .nav-dropdown-panel a {
+    display: block;
+    padding: 10px 18px;
+    font-size: 13px;
+    text-transform: none;
+    letter-spacing: 0.01em;
+    color: var(--ink);
+  }
+  .nav-dropdown-panel a:hover { background: var(--cream-deep); color: var(--terracotta); }
+  .navlinks a.active { color: var(--terracotta); border-bottom: 1px solid var(--terracotta); padding-bottom: 4px; }
+  .nav-cta { border: 1px solid var(--ink); padding: 10px 24px; font-size: 13px; letter-spacing: 0.05em; text-transform: uppercase; border-radius: 2px; color: var(--ink) !important; text-decoration: none !important; background: transparent; transition: background 0.15s, color 0.15s; } .nav-cta:hover { background: var(--ink); color: var(--white) !important; }
+
+  .page-hero { padding: 80px 0 56px; text-align: center; }
+  .eyebrow { color: var(--terracotta); font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 14px; }
+  .page-hero h1 { font-size: 44px; margin-bottom: 16px; }
+  .page-hero p { color: var(--ink-soft); font-size: 16.5px; }
+
+  .faq-section { padding-bottom: 24px; }
+  .faq-cat { font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--terracotta); margin: 48px 0 18px; }
+  .faq-cat:first-child { margin-top: 0; }
+  details {
+    background: var(--white);
+    border: 1px solid var(--sand);
+    border-radius: 6px;
+    margin-bottom: 12px;
+    padding: 2px 24px;
+  }
+  summary {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    font-weight: 500;
+    padding: 18px 0;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::after {
+    content: '+';
+    font-size: 24px;
+    color: var(--terracotta);
+    margin-left: 16px;
+    flex-shrink: 0;
+  }
+  details[open] summary::after { content: '–'; }
+  details p, details .a-body {
+    padding: 0 0 22px;
+    font-size: 15px;
+    color: var(--ink-soft);
+  }
+  details .a-body strong { color: var(--ink); font-weight: 500; }
+  .flag {
+    background: var(--cream-deep);
+    border-left: 3px solid var(--terracotta);
+    padding: 10px 16px;
+    font-size: 13px;
+    margin-top: 12px;
+    color: var(--ink);
+  }
+
+  .still-questions {
+    background: var(--white);
+    padding: 64px 0;
+    text-align: center;
+    margin-top: 40px;
+  }
+  .still-questions h2 { font-size: 28px; margin-bottom: 12px; }
+  .still-questions p { color: var(--ink-soft); font-size: 15.5px; margin-bottom: 20px; }
+  .still-questions a { color: var(--terracotta); text-decoration: none; font-weight: 500; }
+  footer {
+    background: var(--ink);
+    color: var(--sand);
+    padding: 56px 0 28px;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr;
+    gap: 40px;
+    max-width: 1180px;
+    margin: 0 auto 40px;
+    padding: 0 32px;
+  }
+  .footer-col h3 {
+    color: var(--white);
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 400;
+    margin-bottom: 16px;
+    opacity: 0.8;
+  }
+  .footer-col a {
+    display: block;
+    color: var(--sand);
+    text-decoration: none;
+    font-size: 14.5px;
+    padding: 6px 0;
+    opacity: 0.9;
+  }
+  .footer-col a:hover { opacity: 1; text-decoration: underline; }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.12);
+    padding-top: 22px;
+    text-align: center;
+    font-size: 12.5px;
+    opacity: 0.7;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 32px;
+    height: 32px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+  .menu-toggle span {
+    display: block;
+    height: 2px;
+    width: 100%;
+    background: var(--ink);
+  }
+  .mobile-menu {
+    display: none;
+    flex-direction: column;
+    background: var(--white);
+    border-bottom: 1px solid var(--sand);
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.25s ease;
+    position: sticky;
+    top: 68px;
+    z-index: 99;
+  }
+  .mobile-menu.open { max-height: 540px; }
+  .mobile-menu a {
+    padding: 16px 32px;
+    font-size: 15px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    border-top: 1px solid var(--cream-deep);
+  }
+  .mobile-menu a.active { color: var(--terracotta); }
+  .mobile-menu a.mm-cta { color: var(--terracotta); font-weight: 500; }
+  .mobile-menu a.mm-sub { padding-left: 48px; font-size: 13.5px; color: var(--ink-soft); border-top: none; }
+
+  @media (max-width: 860px) {
+    .navlinks, .nav-cta { display: none; }
+    .menu-toggle { display: flex; }
+    .mobile-menu { display: flex; }
+    .footer-grid { grid-template-columns: 1fr; gap: 32px; text-align: left; }
+  }
+  @media (max-width: 480px) {
+    .page-hero h1 { font-size: 32px; }
+    .page-hero { padding: 56px 0 40px; }
+    summary { font-size: 17px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo"><a href='/' style='color:inherit;text-decoration:none;'>Bubbles <span>and</span> Brews <span class="sub">Canada</span></a></div>
+  <div class="navlinks">
+    <a href='/our-story'>Our Story</a>
+    <a href='/packages'>Packages</a>
+    <a href='/what-we-pour'>What We Pour</a>
+    <a href='/gallery'>Gallery</a>
+    <a href='/frozen-bar'>The Frozen Bar</a>
+    <div class="nav-dropdown">
+      <a href='/resources'>Resources</a>
+      <div class="nav-dropdown-panel">
+        <a href='/ice-calculator'>Ice Calculator</a>
+        <a href='/drink-calculator'>Drink Calculator</a>
+        <a href='/trending-cocktails'>Trending Cocktails</a>
+      </div>
+    </div>
+          <a class='active' href='/faq'>FAQ</a>
+  </div>
+  <a class='nav-cta' href='/inquire'>Let's talk</a>
+  <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" onclick="document.getElementById('mobile-menu').classList.toggle('open'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded')==='false');">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<main>
+<div class="mobile-menu" id="mobile-menu">
+  <a href='/our-story'>Our Story</a>
+  <a href='/packages'>Packages</a>
+  <a href='/what-we-pour'>What We Pour</a>
+  <a href='/gallery'>Gallery</a>
+  <a href='/frozen-bar'>The Frozen Bar</a>
+  <a href='/resources'>Resources</a>
+  <a class='active' href='/faq'>FAQ</a>
+  <a class='mm-cta' href='/inquire'>Let's talk</a>
+</div>
+
+
+<section class="page-hero">
+  <div class="eyebrow">FAQ</div>
+  <h1>Questions we get a lot</h1>
+  <p>If you don't see your answer here, call or email us — we'd rather talk it through than have you guess.</p>
+</section>
+
+<div class="wrap faq-section">
+
+  <div class="faq-cat">The basics</div>
+
+  <details open>
+    <summary>Where do you travel?</summary>
+    <div class="a-body">We're predominantly in and around Calgary, and regularly head to Banff and Canmore. We'll also travel further into Southern Alberta — Airdrie, Okotoks, High River, Cochrane, and beyond. A travel fee applies outside Calgary city limits; the further out, the more worth it is to ask us directly rather than guess.</div>
+  </details>
+
+  <details>
+    <summary>Will the Ape fit at my venue or backyard?</summary>
+    <div class="a-body">In almost every case, yes — we've made some pretty tight and unusual spots work. We need a path at least 5 feet wide to get the truck into position (a gate, side yard, or driveway — tight clearance is fine), and a roughly 10-foot area for it to park. The one non-negotiable is that it has to sit level. Slight grades can sometimes be managed on site, but a noticeably sloped yard is the most common reason a space doesn't work. Not sure about yours? Send us a few photos of the access path and the spot you're picturing, and we'll tell you straight away.</div>
+  </details>
+
+  <details>
+    <summary>Do you supply the alcohol?</summary>
+    <div class="a-body">No — and this is the most important thing to understand about how we work. Bubbles and Brews is dry-hire: <strong>you</strong> provide the alcohol, and we bring everything else — the truck, the bartenders, the taps, the drinkware, the ice, the garnish. There's no liquor markup, and we never run a cash bar. Alcohol needs to be on site at the time of drop-off, and we'll walk you through exactly what to buy based on your guest count and drink choices.</div>
+  </details>
+
+  <details>
+    <summary>Do you serve same-sex couples and LGBTQ2S+ celebrations?</summary>
+    <div class="a-body">Absolutely — every couple, every celebration, full stop. We've had the privilege of pouring for same-sex weddings and engagements, and we show up exactly the same way we do for anyone else: ready to make your day great.</div>
+  </details>
+
+  <details>
+    <summary>Do we need a liquor license?</summary>
+    <div class="a-body">It depends on your venue. Most residential properties (backyards, private homes) don't require one, since you're serving your own guests, not the public, and not selling drinks. Public venues, ticketed events, or anywhere alcohol might be considered "sold" can require a Special Occasions Permit (SOP) in Alberta. Securing any required license is the client's responsibility, but we're happy to point you in the right direction if you're not sure where your event falls.
+      <div class="flag">Note: liquor licensing and our own liability coverage are two separate things — having the right permit doesn't automatically extend our insurance, and vice versa. Worth asking us directly if your event has any unusual circumstances.</div>
+    </div>
+  </details>
+
+  <div class="faq-cat">What's included</div>
+
+  <details>
+    <summary>What's included in a package?</summary>
+    <div class="a-body">Every package includes the Ape and a bartender on site, two taps with cooling lines, one tap always available non-alcoholic, and full setup before and teardown after — so your booked hours are pouring hours, not us getting in your way. Drinkware, ice, garnish, and condiments are included for typical guest counts; larger events may need an add-on to cover consumables properly. See the <a href='/packages' style='color:var(--terracotta);'>Packages page</a> for current pricing.</div>
+  </details>
+
+  <details>
+    <summary>What can you actually pour?</summary>
+    <div class="a-body">Two taps means two things flowing at once — typically one prosecco or wine, and one custom cocktail. Anything clear and carbonation-friendly (prosecco, wine, beer, kombucha, craft soda, most cocktails) can run through the tap line. Drinks that need fresh ingredients — a mojito's mint, for example — can't go through a tap, so we batch the base and muddle and finish those by hand instead. See <a href='/what-we-pour' style='color:var(--terracotta);'>What We Pour</a> for the full picture.</div>
+  </details>
+
+  <details>
+    <summary>Can guests get a non-alcoholic version of any drink?</summary>
+    <div class="a-body">For our muddled and batch-built cocktails, yes — we build the mocktail base first and add alcohol after, so a fully alcohol-free version of the same drink is always available, not an afterthought. One of our two taps is also always reserved for a non-alcoholic option.</div>
+  </details>
+
+  <details>
+    <summary>Do you provide real glassware?</summary>
+    <div class="a-body">Standard service uses durable drinkware, not glass. If you'd like real glassware for your event, we can connect you with a rental partner — booked and paid directly by you, so breakage isn't on either of our shoulders.</div>
+  </details>
+
+  <div class="faq-cat">Booking &amp; logistics</div>
+
+  <details>
+    <summary>How do I book, and what's the deposit?</summary>
+    <div class="a-body">A $500 non-refundable deposit secures your date once your contract is signed, with the remaining balance due 30 days before your event.</div>
+  </details>
+
+  <details>
+    <summary>Do you need power at the venue?</summary>
+    <div class="a-body">Yes — a standard 110V, 15-amp outlet is needed at the location of the cart. Providing power access (and any related cost) is the client's responsibility. If you're not sure what's available at your venue, let's talk it through before your event.</div>
+  </details>
+
+  <details>
+    <summary>What if it rains?</summary>
+    <div class="a-body">The Ape itself is weather-resistant and can pour rain or shine, but extreme weather (lightning, severe wind) is a safety call we'll make together on the day. Worth having a backup covered spot in mind for outdoor events, just in case.</div>
+  </details>
+
+  <details>
+    <summary>Can you handle a larger event with more guests?</summary>
+    <div class="a-body">Yes — for bigger events, we can bring a second bar and additional bartenders to widen what's pouring at once. This is fully bespoke and quoted case-by-case based on your guest count, so reach out and we'll figure out what makes sense.</div>
+  </details>
+
+</div>
+
+<section class="still-questions">
+  <h2>Still have a question?</h2>
+  <p>We'd genuinely rather talk it through than have you guess.</p>
+  <a href="tel:4033830900">403.383.0900</a> &nbsp;&middot;&nbsp; <a href="mailto:cindy@bubblesandbrews.ca">cindy@bubblesandbrews.ca</a>
+</section>
+
+</main>
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h3>Bubbles and Brews Canada</h3>
+      <p style="font-size:14px; opacity:0.85; line-height:1.6; max-width:240px;">A vintage Piaggio Ape mobile bar serving Calgary, Banff, and Canmore.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Explore</h3>
+      <a href='/our-story'>Our Story</a>
+      <a href='/packages'>Packages</a>
+      <a href='/what-we-pour'>What We Pour</a>
+      <a href='/gallery'>Gallery</a>
+      <a href='/frozen-bar'>The Frozen Bar</a>
+      <a href='/faq'>FAQ</a>
+    </div>
+    <div class="footer-col">
+      <h3>Get in touch</h3>
+      <a href='/inquire'>Let's talk</a>
+      <a href="tel:4033830900">403.383.0900</a>
+      <a href="mailto:cindy@bubblesandbrews.ca">cindy@bubblesandbrews.ca</a>
+      <a href="https://instagram.com/bubblesandbrewscanada" target="_blank" rel="noopener">@bubblesandbrewscanada</a>
+    </div>
+  </div>
+  <div class="footer-bottom">Bubbles and Brews Canada &middot; Calgary, Alberta &middot; Bubbles and Brews Canada is a registered trademark</div>
+</footer>
+
+</body>
+</html>

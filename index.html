@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mobile Bar Calgary, Banff & Canmore | Prosecco Truck — Bubbles and Brews Canada</title>
+<meta name="description" content="Calgary's vintage Piaggio Ape mobile bar and prosecco truck. Bubbles and Brews Canada has poured at 60+ weddings and events since 2020, serving Calgary, Banff, Canmore, and Southern Alberta.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"></noscript>
+<style>
+  :root {
+    --cream: #FAF6EE;
+    --cream-deep: #F1E9D8;
+    --sand: #E4D7BE;
+    --terracotta: #965C43;
+    --berry: #A23B3B;
+    --olive: #6B7256;
+    --ink: #3A3530;
+    --ink-soft: #6B6358;
+    --gold: #C9A24B;
+    --white: #FFFFFF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Jost', sans-serif;
+    color: var(--ink);
+    background: var(--cream);
+    line-height: 1.6;
+  }
+  h1, h2, h3, .display {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+  }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+
+  /* NAV */
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 32px;
+    max-width: 1180px;
+    margin: 0 auto;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--cream);
+    border-bottom: 1px solid var(--cream-deep);
+  }
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 500;
+    color: var(--ink);
+    letter-spacing: 0.02em;
+  }
+  .logo span { color: var(--terracotta); font-style: italic; }
+  .navlinks { display: flex; gap: 20px; font-size: 13px; letter-spacing: 0.025em; text-transform: uppercase; }
+  .navlinks a { color: var(--ink); text-decoration: none; }
+  .nav-dropdown { position: relative; }
+  .nav-dropdown-panel {
+    position: absolute;
+    top: 28px;
+    left: -16px;
+    background: var(--white);
+    border: 1px solid var(--sand);
+    border-radius: 6px;
+    padding: 8px 0;
+    min-width: 200px;
+    box-shadow: 0 8px 24px rgba(58,53,48,0.08);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px);
+    transition: opacity 0.15s, transform 0.15s, visibility 0.15s;
+    z-index: 50;
+  }
+  .nav-dropdown:hover .nav-dropdown-panel,
+  .nav-dropdown:focus-within .nav-dropdown-panel {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .nav-dropdown-panel a {
+    display: block;
+    padding: 10px 18px;
+    font-size: 13px;
+    text-transform: none;
+    letter-spacing: 0.01em;
+    color: var(--ink);
+  }
+  .nav-dropdown-panel a:hover { background: var(--cream-deep); color: var(--terracotta); }
+  .nav-cta {
+    border: 1px solid var(--ink);
+    padding: 10px 24px;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    color: var(--ink) !important;
+    text-decoration: none !important;
+    background: transparent;
+    transition: background 0.15s, color 0.15s;
+  }
+  .nav-cta:hover { background: var(--ink); color: var(--white) !important; }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    min-height: 640px;
+    display: flex;
+    align-items: center;
+    background-color: var(--sand);
+    overflow: hidden;
+  }
+  .hero-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(58,53,48,0.18), rgba(58,53,48,0.58));
+    z-index: 1;
+  }
+  .hero-inner { position: relative; z-index: 2; padding: 0 32px; max-width: 1180px; margin: 0 auto; }
+  .eyebrow {
+    color: var(--white);
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    opacity: 0.9;
+  }
+  .hero h1 {
+    color: var(--white);
+    font-size: 58px;
+    line-height: 1.1;
+    max-width: 680px;
+    margin-bottom: 22px;
+    text-shadow: 0 2px 18px rgba(0,0,0,0.25);
+  }
+  .hero p {
+    color: var(--cream);
+    font-size: 18px;
+    max-width: 520px;
+    margin-bottom: 36px;
+    opacity: 0.95;
+  }
+  .hero-ctas { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--terracotta);
+    color: var(--white);
+    border: none;
+    padding: 16px 34px;
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    cursor: pointer;
+    font-family: 'Jost', sans-serif;
+  }
+  .btn-secondary {
+    background: transparent;
+    color: var(--white);
+    border: 1px solid var(--white);
+    padding: 16px 34px;
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    cursor: pointer;
+    font-family: 'Jost', sans-serif;
+  }
+  .hero-loc {
+    margin-top: 28px;
+    color: var(--cream);
+    font-size: 14px;
+    letter-spacing: 0.03em;
+  }
+
+  /* SECTION SHARED */
+  section { padding: 96px 0; }
+  .section-label {
+    text-align: center;
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 14px;
+  }
+  .section-title {
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 18px;
+    color: var(--ink);
+  }
+  .section-sub {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 60px;
+    color: var(--ink-soft);
+    font-size: 17px;
+  }
+
+  /* WHAT WE DO */
+  .what-we-do { background: var(--white); }
+  .wwd-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .wwd-img {
+    aspect-ratio: 4/5;
+    background: url('photos/ws-1.jpg') center/cover;
+    background: image-set(url('photos/ws-1.webp') type('image/webp'), url('photos/ws-1.jpg') type('image/jpeg')) center/cover;
+    background-color: #d8c9a8;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+  }
+  .wwd-img::after {
+    content: 'The Ape, ready to pour';
+    position: absolute; bottom: 14px; left: 14px;
+    background: rgba(255,255,255,0.85);
+    font-size: 11px; padding: 4px 10px; border-radius: 3px;
+    color: var(--ink-soft); letter-spacing: 0.03em;
+  }
+  .wwd-copy h2 { font-size: 36px; margin-bottom: 20px; }
+  .wwd-copy p { color: var(--ink-soft); font-size: 16px; margin-bottom: 28px; }
+  .wwd-list { list-style: none; }
+  .wwd-list li {
+    display: flex; align-items: baseline; gap: 12px;
+    padding: 12px 0; border-top: 1px solid var(--cream-deep);
+    font-size: 15px;
+  }
+  .wwd-list li:first-child { border-top: none; }
+  .wwd-list .mark { color: var(--terracotta); font-family: 'Cormorant Garamond', serif; font-size: 20px; }
+
+  /* PACKAGES */
+  .packages { background: var(--cream-deep); }
+  .areas-served { background: var(--white); padding: 88px 0; }
+  .areas-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 48px; }
+  .area-card { padding: 4px; text-align: center; }
+  .area-card h3 { font-size: 19px; margin-bottom: 10px; }
+  .area-card p { font-size: 13.5px; color: var(--ink-soft); }
+  .pkg-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    max-width: 880px;
+    margin: 0 auto;
+  }
+  .pkg-card {
+    background: var(--white);
+    border: 1px solid var(--sand);
+    border-radius: 4px;
+    padding: 44px 38px;
+    text-align: center;
+  }
+  .pkg-card.featured { border: 1px solid var(--terracotta); position: relative; }
+  .pkg-badge {
+    position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
+    background: var(--terracotta); color: var(--white);
+    font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 5px 16px; border-radius: 20px;
+  }
+  .pkg-name { font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 12px; }
+  .pkg-starting { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--terracotta); font-weight: 500; margin-bottom: 4px; }
+  .pkg-price { font-family: 'Cormorant Garamond', serif; font-size: 48px; color: var(--ink); }
+  .pkg-price sup { font-size: 18px; top: -1.2em; }
+  .pkg-from { font-size: 13px; color: var(--ink-soft); margin-bottom: 24px; }
+  .pkg-desc { font-size: 14px; color: var(--ink-soft); margin-bottom: 28px; }
+  .pkg-link { font-size: 13px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--terracotta); text-decoration: none; border-bottom: 1px solid var(--terracotta); padding-bottom: 3px; }
+  .pkg-note { text-align: center; margin-top: 36px; font-size: 14px; color: var(--ink-soft); }
+
+  /* FEATURED / PRESS STRIP */
+  .press-strip {
+    background: var(--white);
+    padding: 56px 0;
+    border-top: 1px solid var(--cream-deep);
+    border-bottom: 1px solid var(--cream-deep);
+  }
+  .press-strip .wrap { display: flex; align-items: center; justify-content: center; gap: 64px; flex-wrap: wrap; }
+  .press-item { display: flex; align-items: center; gap: 12px; opacity: 0.75; }
+  .press-badge {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    letter-spacing: 0.04em;
+    color: var(--ink-soft);
+    border: 1px solid var(--ink-soft);
+    padding: 6px 16px;
+    border-radius: 2px;
+  }
+
+  /* JILLIAN HARRIS */
+  .friends { background: var(--white); }
+  .friends-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 56px;
+    align-items: center;
+    max-width: 980px;
+    margin: 0 auto;
+  }
+  .friends-img {
+    aspect-ratio: 1/1;
+    background: #d8c9a8;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+  }
+  .friends-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .friends-copy .section-label { text-align: left; }
+  .friends-copy h2 { font-size: 34px; text-align: left; margin-bottom: 20px; }
+  .friends-copy p { color: var(--ink-soft); font-size: 16px; }
+
+  /* GALLERY */
+  .gallery { background: var(--cream-deep); }
+  .follow-us { background: var(--white); padding: 80px 0; }
+  .gal-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 180px 180px;
+    gap: 14px;
+  }
+  .gal-item {
+    border-radius: 4px;
+    background: #d8c9a8;
+    position: relative;
+    overflow: hidden;
+  }
+  .gal-item span {
+    position: absolute; bottom: 10px; left: 10px;
+    font-size: 11px; color: var(--white);
+    background: rgba(58,53,48,0.55); padding: 3px 9px; border-radius: 3px;
+  }
+  .gal-1 { grid-column: 1/3; grid-row: 1/3; background: url('photos/gallery/weddings/banff-mountain-wedding-ceremony-mobile-bar-800w.jpg') center/cover; }
+  .gal-2 { background: url('photos/gallery/weddings/alberta-wedding-couple-kiss-mobile-bar-480w.jpg') center/cover; }
+  .gal-3 { background: url('photos/gallery/corporate/calgary-corporate-event-mobile-bar-indoor-480w.jpg') center/cover; }
+  .gal-4 { background: url('photos/gallery/weddings/banff-mountain-wedding-mobile-bar-full-setup-480w.jpg') center 30%/cover; grid-row: 1/3; }
+  .gal-5 { background: url('photos/gallery/parties/calgary-bachelorette-party-mobile-bar-480w.jpg') center/cover; }
+  .gal-6 { background: url('photos/gallery/venues/calgary-mobile-bar-golden-hour-sunset-view-480w.jpg') center/cover; }
+  .gal-cta { text-align: center; margin-top: 44px; }
+
+  /* CONTACT */
+  .contact {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 100px 0;
+  }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 72px;
+    max-width: 980px;
+    margin: 0 auto;
+  }
+  .contact h2 { color: var(--white); font-size: 40px; margin-bottom: 18px; }
+  .contact p.lead { color: var(--sand); font-size: 16px; margin-bottom: 36px; }
+  .contact-direct { border-top: 1px solid rgba(255,255,255,0.15); padding-top: 28px; margin-top: 8px; }
+  .contact-direct a { color: var(--white); text-decoration: none; font-size: 17px; display: block; margin-bottom: 8px; }
+  .contact-direct .label { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--sand); opacity: 0.7; margin-bottom: 18px; }
+
+  form { display: flex; flex-direction: column; gap: 16px; }
+  form input, form select, form textarea {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: var(--white);
+    padding: 14px 16px;
+    font-family: 'Jost', sans-serif;
+    font-size: 14px;
+    border-radius: 2px;
+  }
+  form input::placeholder, form textarea::placeholder { color: rgba(250,246,238,0.5); }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  form button {
+    background: var(--terracotta);
+    color: var(--white);
+    border: none;
+    padding: 16px;
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    cursor: pointer;
+    margin-top: 8px;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink);
+    color: var(--sand);
+    padding: 56px 0 28px;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr;
+    gap: 40px;
+    max-width: 1180px;
+    margin: 0 auto 40px;
+    padding: 0 32px;
+  }
+  .footer-col h3 {
+    color: var(--white);
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 400;
+    margin-bottom: 16px;
+    opacity: 0.8;
+  }
+  .footer-col a {
+    display: block;
+    color: var(--sand);
+    text-decoration: none;
+    font-size: 14.5px;
+    padding: 6px 0;
+    opacity: 0.9;
+  }
+  .footer-col a:hover { opacity: 1; text-decoration: underline; }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.12);
+    padding-top: 22px;
+    text-align: center;
+    font-size: 12.5px;
+    opacity: 0.7;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+footer .tm { opacity: 0.6; }
+
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 32px;
+    height: 32px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+  .menu-toggle span {
+    display: block;
+    height: 2px;
+    width: 100%;
+    background: var(--ink);
+    transition: transform 0.2s, opacity 0.2s;
+  }
+  .mobile-menu {
+    display: none;
+    flex-direction: column;
+    background: var(--white);
+    border-bottom: 1px solid var(--sand);
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.25s ease;
+    position: sticky;
+    top: 68px;
+    z-index: 99;
+  }
+  .mobile-menu.open { max-height: 600px; }
+  .mobile-menu a {
+    padding: 16px 32px;
+    font-size: 15px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    border-top: 1px solid var(--cream-deep);
+  }
+  .mobile-menu a.mm-cta { color: var(--terracotta); font-weight: 500; }
+  .mobile-menu a.mm-sub { padding-left: 48px; font-size: 13.5px; color: var(--ink-soft); border-top: none; }
+
+  /* FROZEN BAR FEATURE */
+  .frozen-feature { background: var(--cream-deep); }
+  .frozen-feature-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 56px;
+    align-items: center;
+    max-width: 980px;
+    margin: 0 auto;
+  }
+  .frozen-feature-img {
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    overflow: hidden;
+    background: var(--sand);
+  }
+  .frozen-feature-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+  .frozen-new-badge {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--white);
+    background: var(--terracotta);
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 14px;
+  }
+  .frozen-feature-copy .section-label { text-align: left; }
+  .frozen-feature-copy h2 { font-size: 34px; text-align: left; margin-bottom: 16px; }
+  .frozen-feature-copy p { color: var(--ink-soft); font-size: 16px; margin-bottom: 24px; }
+
+  @media (max-width: 860px) {
+    .navlinks, .nav-cta { display: none; }
+    .menu-toggle { display: flex; }
+    .mobile-menu { display: flex; }
+    .footer-grid { grid-template-columns: 1fr; gap: 32px; text-align: left; }
+    .hero h1 { font-size: 38px; }
+    .wwd-grid, .friends-grid, .contact-grid { grid-template-columns: 1fr; }
+    .areas-grid { grid-template-columns: repeat(2, 1fr); }
+    .pkg-grid { grid-template-columns: 1fr; }
+    .gal-grid { grid-template-columns: repeat(2,1fr); grid-template-rows: 150px 150px 150px; }
+    .gal-1 { grid-column: 1/3; }
+    .gal-4 { grid-row: auto; }
+    .form-row { grid-template-columns: 1fr; }
+    .frozen-feature-grid { grid-template-columns: 1fr; }
+    .frozen-feature-img { max-width: 220px; margin: 0 auto; }
+  }
+  @media (max-width: 480px) {
+    .hero h1 { font-size: 28px; line-height: 1.2; }
+    .hero p { font-size: 15.5px; }
+    .hero-ctas { flex-direction: column; align-items: stretch; }
+    .btn-primary, .btn-secondary { text-align: center; }
+    .press-strip .wrap { gap: 16px; }
+    .press-badge { font-size: 13px; padding: 5px 12px; }
+    .section-title { font-size: 28px; }
+    .friends-img { max-width: 220px; margin: 0 auto; }
+    .areas-grid { grid-template-columns: 1fr; }
+  }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "additionalType": "https://schema.org/CateringService",
+  "name": "Bubbles and Brews Canada",
+  "image": "https://bubblesandbrews.ca/photos/ws-7.jpg",
+  "url": "https://bubblesandbrews.ca",
+  "telephone": "+1-403-383-0900",
+  "email": "cindy@bubblesandbrews.ca",
+  "description": "Bubbles and Brews Canada is a vintage Piaggio Ape mobile bar offering dry-hire bar service for weddings, engagements, corporate events, and private celebrations in Calgary, Banff, Canmore, and Southern Alberta, since 2020.",
+  "foundingDate": "2020",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Calgary",
+    "addressRegion": "AB",
+    "addressCountry": "CA"
+  },
+  "areaServed": [
+    { "@type": "City", "name": "Calgary" },
+    { "@type": "City", "name": "Banff" },
+    { "@type": "City", "name": "Canmore" },
+    { "@type": "City", "name": "Okotoks" },
+    { "@type": "City", "name": "Airdrie" },
+    { "@type": "City", "name": "Cochrane" },
+    { "@type": "City", "name": "High River" }
+  ],
+  "sameAs": [
+    "https://instagram.com/bubblesandbrewscanada"
+  ]
+}
+</script>
+</head>
+<body>
+
+<nav>
+  <div class="logo"><a href='/' style='color:inherit;text-decoration:none;'>Bubbles <span>and</span> Brews <span style="font-style:normal;font-size:14px;color:#6B6358;">Canada</span></a></div>
+  <div class="navlinks">
+    <a href='/our-story'>Our Story</a>
+    <a href='/packages'>Packages</a>
+    <a href='/what-we-pour'>What We Pour</a>
+    <a href='/gallery'>Gallery</a>
+    <a href='/frozen-bar'>The Frozen Bar</a>
+    <div class="nav-dropdown">
+      <a href='/resources'>Resources</a>
+      <div class="nav-dropdown-panel">
+        <a href='/ice-calculator'>Ice Calculator</a>
+        <a href='/drink-calculator'>Drink Calculator</a>
+        <a href='/trending-cocktails'>Trending Cocktails</a>
+      </div>
+    </div>
+          <a href='/faq'>FAQ</a>
+  </div>
+  <a class='nav-cta' href='/inquire'>Let's talk</a>
+  <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" onclick="document.getElementById('mobile-menu').classList.toggle('open'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded')==='false');">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<main>
+<div class="mobile-menu" id="mobile-menu">
+  <a href='/our-story'>Our Story</a>
+  <a href='/packages'>Packages</a>
+  <a href='/what-we-pour'>What We Pour</a>
+  <a href='/gallery'>Gallery</a>
+  <a href='/frozen-bar'>The Frozen Bar</a>
+  <a href='/resources'>Resources</a>
+  <a class='mm-sub' href='/ice-calculator'>Ice Calculator</a>
+  <a class='mm-sub' href='/drink-calculator'>Drink Calculator</a>
+  <a class='mm-sub' href='/trending-cocktails'>Trending Cocktails</a>
+  <a href='/faq'>FAQ</a>
+  <a class='mm-cta' href='/inquire'>Let's talk</a>
+</div>
+
+<section class="hero" style="padding:0;">
+  <picture>
+    <source srcset="photos/ws-7.webp" type="image/webp">
+    <img class="hero-img" src="photos/ws-7.jpg" alt="Bubbles and Brews Canada vintage Piaggio Ape mobile bar parked at an outdoor event" fetchpriority="high">
+  </picture>
+  <div class="hero-overlay"></div>
+  <div class="hero-inner">
+    <div class="eyebrow">Calgary &middot; Banff &middot; Canmore</div>
+    <h1>A vintage Italian truck.<br>Two taps. Whatever you're<br>celebrating.</h1>
+    <p>Bubbles and Brews Canada brings a fully restored Piaggio Ape mobile bar to your wedding, party, or event — pouring prosecco, craft beer, and custom cocktails on tap, right where your guests are standing.</p>
+    <div class="hero-ctas">
+      <a class='btn-primary' href='/inquire' style='text-decoration:none; display:inline-block;'>Get a quote</a>
+      <a href="tel:4033830900" class="btn-secondary" style="text-decoration:none; display:inline-block;">Call 403.383.0900</a>
+    </div>
+  </div>
+</section>
+
+<section class="what-we-do">
+  <div class="wrap wwd-grid">
+    <div class="wwd-img"></div>
+    <div class="wwd-copy">
+      <div class="section-label" style="text-align:left;">The dry-hire model</div>
+      <h2>You bring the drinks.<br>We bring everything else.</h2>
+      <p>No cash bar, ever. No markup on your liquor. Just a beautifully restored vintage Piaggio Ape, parked at your event, pouring two drinks at a time — one always available non-alcoholic.</p>
+      <ul class="wwd-list">
+        <li><span class="mark">&mdash;</span> The truck, the taps, the bartenders</li>
+        <li><span class="mark">&mdash;</span> Drinkware, garnish, condiments &mdash; ice included for typical guest counts</li>
+        <li><span class="mark">&mdash;</span> Full setup before, full teardown after</li>
+        <li><span class="mark">&mdash;</span> Custom kegged cocktails, beer, or prosecco</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="packages">
+  <div class="wrap">
+    <div class="section-label">Packages</div>
+    <h2 class="section-title">Pouring hours, not parking hours</h2>
+    <p class="section-sub">Every package includes full setup before your event and teardown after — so your booked hours are pouring hours, not us getting in your way.</p>
+    <div class="pkg-grid">
+      <div class="pkg-card">
+        <div class="pkg-name">Weeknight</div>
+        <div class="pkg-starting">Starting from</div>
+        <div class="pkg-price"><sup>$</sup>1,100</div>
+        <div class="pkg-from">4 hours of pouring &middot; CAD</div>
+        <p class="pkg-desc">Ideal for smaller gatherings, corporate happy hours, and weeknight celebrations.</p>
+        <a class='pkg-link' href='/packages'>See details</a>
+      </div>
+      <div class="pkg-card featured">
+        <div class="pkg-badge">Most popular</div>
+        <div class="pkg-name">Full event</div>
+        <div class="pkg-starting">Starting from</div>
+        <div class="pkg-price"><sup>$</sup>1,950</div>
+        <div class="pkg-from">8 hours of pouring &middot; CAD</div>
+        <p class="pkg-desc">Our signature wedding and weekend package — the full Bubbles and Brews experience.</p>
+        <a class='pkg-link' href='/packages'>See details</a>
+      </div>
+    </div>
+    <p class="pkg-note">Travel fee applies outside Calgary city limits &middot; we also serve Banff, Canmore, and Southern Alberta</p>
+  </div>
+</section>
+
+<section class="areas-served">
+  <div class="wrap">
+    <div class="section-label">Where we pour</div>
+    <h2 class="section-title">Calgary, Banff, Canmore, and beyond</h2>
+    <div class="areas-grid">
+      <div class="area-card">
+        <h3>Mobile bar in Calgary</h3>
+        <p>Our home base, and where most of our weddings, corporate events, and backyard parties happen. No travel fee within Calgary city limits.</p>
+      </div>
+      <div class="area-card">
+        <h3>Mobile bar in Banff</h3>
+        <p>Mountain weddings and destination events are a favourite — the Ape travels well, and the views don't hurt either.</p>
+      </div>
+      <div class="area-card">
+        <h3>Mobile bar in Canmore</h3>
+        <p>A regular stop for us, with the same full-service setup you'd get in Calgary, just with more mountains in the background.</p>
+      </div>
+      <div class="area-card">
+        <h3>Southern Alberta &amp; beyond</h3>
+        <p>Airdrie, Okotoks, Cochrane, High River, and further — if it's a reasonable drive, we're happy to talk it through.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="press-strip">
+  <div class="wrap">
+    <div class="press-item"><span class="press-badge">Featured on WeddingWire</span></div>
+    <div class="press-item"><span class="press-badge">60+ events &middot; since 2020</span></div>
+    <div class="press-item"><span class="press-badge">Registered &middot; Bubbles and Brews Canada</span></div>
+  </div>
+</div>
+
+<section class="frozen-feature">
+  <div class="wrap frozen-feature-grid">
+    <div class="frozen-feature-copy">
+      <div class="frozen-new-badge">New for 2026</div>
+      <h2>Introducing The Frozen Bar.</h2>
+      <p>A commercial 3-bowl slush machine, delivered and set up at your event. Three flavours, around 180 frozen drinks, any standard outlet. You bring the spirit — we handle the rest.</p>
+      <a class='pkg-link' href='/frozen-bar'>See pricing &amp; flavours</a>
+    </div>
+    <div class="frozen-feature-img">
+      <img src="photos/frozen-bar/peach-bellini.jpg" alt="Peach bellini served from The Frozen Bar by Bubbles and Brews Canada" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section class="friends">
+  <div class="wrap friends-grid">
+    <div class="friends-img"><img src="photos/homepage/okanagan-prosecco-bar-friends-circle.jpg" alt="Two friends laughing together at a Bubbles and Brews prosecco bar event, in front of the vintage Piaggio Ape mobile bar" loading="lazy"></div>
+    <div class="friends-copy">
+      <div class="section-label">Friends of the brand</div>
+      <h2>Familiar faces, familiar friends</h2>
+      <p>Bubbles and Brews Canada has been part of the celebration alongside some familiar Calgary faces — proudly local, proudly homegrown.</p>
+    </div>
+  </div>
+</section>
+
+<section class="gallery">
+  <div class="wrap">
+    <div class="section-label">From the road</div>
+    <h2 class="section-title">Real events, real guests</h2>
+    <div class="gal-grid">
+      <div class="gal-item gal-1"><span>Mountain wedding, Banff</span></div>
+      <div class="gal-item gal-2"><span>Wedding, Calgary</span></div>
+      <div class="gal-item gal-3"><span>Corporate event</span></div>
+      <div class="gal-item gal-4"><span>Mountain venue, Banff</span></div>
+      <div class="gal-item gal-5"><span>Bachelorette party</span></div>
+      <div class="gal-item gal-6"><span>Golden hour</span></div>
+    </div>
+    <div class="gal-cta"><a class='pkg-link' href='/gallery'>See the full gallery</a></div>
+  </div>
+</section>
+
+<section class="follow-us">
+  <div class="wrap" style="text-align:center;">
+    <div class="section-label">Follow along</div>
+    <h2 class="section-title">14,000+ people already do</h2>
+    <p style="max-width:560px; margin:0 auto 28px; color:var(--ink-soft); font-size:16px;">For real-time looks at our events, behind-the-scenes setup, and the occasional spilled prosecco — follow Bubbles and Brews Canada on Instagram.</p>
+    <a href="https://instagram.com/bubblesandbrewscanada" target="_blank" rel="noopener" class="btn-primary" style="text-decoration:none; display:inline-block;">@bubblesandbrewscanada</a>
+  </div>
+</section>
+
+<section class="contact">
+  <div class="wrap" style="text-align:center; max-width:680px;">
+    <div class="section-label" style="color:var(--sand);">Let's talk</div>
+    <h2 style="color:var(--white);">Tell us about your event</h2>
+    <p class="lead" style="margin: 0 auto 32px;">Most people end up chatting with Cindy directly — fill out a quick form and we'll get back to you fast.</p>
+    <a href='/inquire' style='display:inline-block; background:var(--terracotta); color:var(--white); padding:16px 36px; font-size:14px; letter-spacing:0.06em; text-transform:uppercase; border-radius:2px; text-decoration:none; margin-bottom:28px;'>Get a quote</a>
+    <div class="contact-direct" style="border-top: 1px solid rgba(255,255,255,0.15); padding-top: 24px; text-align:center;">
+      <div class="label">Or reach us directly</div>
+      <a href="tel:4033830900">403.383.0900</a>
+      <a href="mailto:cindy@bubblesandbrews.ca">cindy@bubblesandbrews.ca</a>
+      <a href="https://instagram.com/bubblesandbrewscanada" target="_blank" rel="noopener">@bubblesandbrewscanada</a>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h3>Bubbles and Brews Canada</h3>
+      <p style="font-size:14px; opacity:0.85; line-height:1.6; max-width:240px;">A vintage Piaggio Ape mobile bar serving Calgary, Banff, and Canmore.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Explore</h3>
+      <a href='/our-story'>Our Story</a>
+      <a href='/packages'>Packages</a>
+      <a href='/what-we-pour'>What We Pour</a>
+      <a href='/gallery'>Gallery</a>
+      <a href='/frozen-bar'>The Frozen Bar</a>
+      <a href='/faq'>FAQ</a>
+    </div>
+    <div class="footer-col">
+      <h3>Get in touch</h3>
+      <a href='/inquire'>Let's talk</a>
+      <a href="tel:4033830900">403.383.0900</a>
+      <a href="mailto:cindy@bubblesandbrews.ca">cindy@bubblesandbrews.ca</a>
+    </div>
+  </div>
+  <div class="footer-bottom">Bubbles and Brews Canada &middot; Calgary, Alberta &middot; Bubbles and Brews Canada is a registered trademark</div>
+</footer>
+
+</body>
+</html>
