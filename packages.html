@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mobile Bar Packages & Pricing | Calgary, Banff, Canmore — Bubbles and Brews Canada</title>
+<meta name="description" content="Mobile bar and prosecco cart packages for Calgary, Banff, Canmore, and Southern Alberta events, starting from $1,100. Full-service Piaggio Ape bar rental with setup and teardown included.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"></noscript>
+<style>
+  :root {
+    --cream: #FAF6EE;
+    --cream-deep: #F1E9D8;
+    --sand: #E4D7BE;
+    --terracotta: #965C43;
+    --berry: #A23B3B;
+    --olive: #6B7256;
+    --ink: #3A3530;
+    --ink-soft: #6B6358;
+    --gold: #C9A24B;
+    --white: #FFFFFF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Jost', sans-serif; color: var(--ink); background: var(--cream); line-height: 1.6; }
+  h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 500; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+  nav { display: flex; align-items: center; justify-content: space-between; padding: 20px 32px; max-width: 1180px; margin: 0 auto; position: sticky; top: 0; z-index: 100; background: var(--cream); border-bottom: 1px solid var(--cream-deep); }
+  .logo { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 500; }
+  .logo span { color: var(--terracotta); font-style: italic; }
+  .logo .sub { font-style: normal; font-size: 14px; color: var(--ink-soft); }
+  .navlinks { display: flex; gap: 36px; font-size: 14px; letter-spacing: 0.04em; text-transform: uppercase; }
+  .navlinks a { color: var(--ink); text-decoration: none; }
+  .nav-dropdown { position: relative; }
+  .nav-dropdown-panel {
+    position: absolute;
+    top: 28px;
+    left: -16px;
+    background: var(--white);
+    border: 1px solid var(--sand);
+    border-radius: 6px;
+    padding: 8px 0;
+    min-width: 200px;
+    box-shadow: 0 8px 24px rgba(58,53,48,0.08);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px);
+    transition: opacity 0.15s, transform 0.15s, visibility 0.15s;
+    z-index: 50;
+  }
+  .nav-dropdown:hover .nav-dropdown-panel,
+  .nav-dropdown:focus-within .nav-dropdown-panel {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .nav-dropdown-panel a {
+    display: block;
+    padding: 10px 18px;
+    font-size: 13px;
+    text-transform: none;
+    letter-spacing: 0.01em;
+    color: var(--ink);
+  }
+  .nav-dropdown-panel a:hover { background: var(--cream-deep); color: var(--terracotta); }
+  .navlinks a.active { color: var(--terracotta); border-bottom: 1px solid var(--terracotta); padding-bottom: 4px; }
+  .nav-cta { border: 1px solid var(--ink); padding: 10px 24px; font-size: 13px; letter-spacing: 0.05em; text-transform: uppercase; border-radius: 2px; color: var(--ink) !important; text-decoration: none !important; background: transparent; transition: background 0.15s, color 0.15s; } .nav-cta:hover { background: var(--ink); color: var(--white) !important; }
+
+  .page-hero {
+    position: relative;
+    min-height: 520px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(180deg, rgba(58,53,48,0.25), rgba(58,53,48,0.62)),
+                url('photos/gallery/venues/alberta-mansion-estate-prosecco-bar.jpg') center/cover;
+  }
+  .page-hero-inner { position: relative; z-index: 2; padding: 0 32px; }
+  .page-hero .eyebrow { color: var(--white); opacity: 0.9; margin-bottom: 14px; }
+  .page-hero h1 { color: var(--white); text-shadow: 0 2px 18px rgba(0,0,0,0.3); font-size: 46px; margin-bottom: 18px; }
+  .page-hero p { color: var(--cream); opacity: 0.95; max-width: 600px; margin: 0 auto; font-size: 17px; }
+  .eyebrow { color: var(--terracotta); font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 14px; }
+
+  .pkg-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    max-width: 980px;
+    margin: 0 auto 24px;
+    padding: 0 32px;
+  }
+  .pkg-card { background: var(--white); border: 1px solid var(--sand); border-radius: 6px; padding: 44px 40px; }
+  .pkg-card.featured { border: 1px solid var(--terracotta); position: relative; }
+  .pkg-badge {
+    position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
+    background: var(--terracotta); color: var(--white); font-size: 11px; letter-spacing: 0.08em;
+    text-transform: uppercase; padding: 5px 16px; border-radius: 20px;
+  }
+  .pkg-name { font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 10px; text-align: center; }
+  .pkg-starting { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--terracotta); font-weight: 500; text-align: center; margin-bottom: 4px; }
+  .pkg-price { font-family: 'Cormorant Garamond', serif; font-size: 52px; text-align: center; }
+  .pkg-price sup { font-size: 18px; top: -1.4em; }
+  .pkg-from { font-size: 13px; color: var(--ink-soft); margin-bottom: 8px; text-align: center; }
+  .pkg-hours { font-size: 13px; color: var(--olive); margin-bottom: 28px; text-align: center; font-style: italic; }
+  .pkg-divider { border-top: 1px solid var(--cream-deep); margin: 0 0 24px; }
+  .pkg-includes-title { font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 16px; }
+  .pkg-list { list-style: none; }
+  .pkg-list li { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; font-size: 14.5px; }
+  .pkg-list .mark { color: var(--terracotta); flex-shrink: 0; margin-top: 2px; }
+  .pkg-foot { text-align: center; margin-top: 28px; }
+  .pkg-btn {
+    display: inline-block; background: var(--terracotta); color: var(--white); padding: 14px 32px;
+    font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; border-radius: 2px; text-decoration: none;
+  }
+
+  .travel-note {
+    max-width: 980px; margin: 8px auto 0; padding: 0 32px;
+    text-align: center; font-size: 14px; color: var(--ink-soft);
+  }
+
+  .dry-hire {
+    background: var(--white);
+    padding: 88px 0;
+    margin-top: 64px;
+  }
+  .dh-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+  .dh-img {
+    aspect-ratio: 4/5;
+    background: url('photos/ws-9.jpg') center/cover;
+    border-radius: 6px;
+  }
+  .dh-copy h2 { font-size: 34px; margin-bottom: 20px; }
+  .dh-copy p { color: var(--ink-soft); font-size: 16px; margin-bottom: 16px; }
+  .dh-callout {
+    background: var(--cream-deep);
+    border-left: 3px solid var(--terracotta);
+    padding: 18px 22px;
+    font-size: 14.5px;
+    color: var(--ink);
+    margin-top: 8px;
+  }
+
+  .deposit-section {
+    background: var(--cream-deep);
+    padding: 72px 0;
+  }
+  .deposit-grid {
+    max-width: 880px; margin: 0 auto; padding: 0 32px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
+  }
+  .deposit-card { background: var(--white); border-radius: 6px; padding: 32px; }
+  .deposit-card h3 { font-size: 22px; margin-bottom: 14px; }
+  .deposit-card p { font-size: 14.5px; color: var(--ink-soft); }
+
+  .addons {
+    padding: 88px 0;
+    background: var(--white);
+  }
+  .addons .wrap { max-width: 980px; }
+  .section-title { text-align: center; font-size: 36px; margin-bottom: 14px; }
+  .section-sub { text-align: center; max-width: 560px; margin: 0 auto 48px; color: var(--ink-soft); font-size: 16px; }
+  .addon-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .addon-card { text-align: center; padding: 28px 20px; border: 1px solid var(--cream-deep); border-radius: 6px; }
+  .addon-card h4 { font-size: 18px; margin-bottom: 8px; font-weight: 500; }
+  .addon-card p { font-size: 13.5px; color: var(--ink-soft); }
+  .experience-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 40px; }
+  .experience-card {
+    background: var(--cream-deep);
+    border: 1px solid var(--sand);
+    border-radius: 8px;
+    padding: 32px 30px;
+  }
+  .experience-tag {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--white);
+    background: var(--terracotta);
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 14px;
+  }
+  .experience-card h3 { font-size: 22px; margin-bottom: 10px; }
+  .experience-card p { font-size: 14.5px; color: var(--ink-soft); margin-bottom: 18px; }
+  .experience-price {
+    display: inline-block;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    font-weight: 500;
+    border-bottom: 1px solid var(--terracotta);
+    padding-bottom: 3px;
+  }
+  footer {
+    background: var(--ink);
+    color: var(--sand);
+    padding: 56px 0 28px;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr;
+    gap: 40px;
+    max-width: 1180px;
+    margin: 0 auto 40px;
+    padding: 0 32px;
+  }
+  .footer-col h4 {
+    color: var(--white);
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 400;
+    margin-bottom: 16px;
+    opacity: 0.8;
+  }
+  .footer-col a {
+    display: block;
+    color: var(--sand);
+    text-decoration: none;
+    font-size: 14.5px;
+    padding: 6px 0;
+    opacity: 0.9;
+  }
+  .footer-col a:hover { opacity: 1; text-decoration: underline; }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.12);
+    padding-top: 22px;
+    text-align: center;
+    font-size: 12.5px;
+    opacity: 0.7;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 32px;
+    height: 32px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+  .menu-toggle span {
+    display: block;
+    height: 2px;
+    width: 100%;
+    background: var(--ink);
+  }
+  .mobile-menu {
+    display: none;
+    flex-direction: column;
+    background: var(--white);
+    border-bottom: 1px solid var(--sand);
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.25s ease;
+    position: sticky;
+    top: 68px;
+    z-index: 99;
+  }
+  .mobile-menu.open { max-height: 540px; }
+  .mobile-menu a {
+    padding: 16px 32px;
+    font-size: 15px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    border-top: 1px solid var(--cream-deep);
+  }
+  .mobile-menu a.active { color: var(--terracotta); }
+  .mobile-menu a.mm-cta { color: var(--terracotta); font-weight: 500; }
+  .mobile-menu a.mm-sub { padding-left: 48px; font-size: 13.5px; color: var(--ink-soft); border-top: none; }
+
+  @media (max-width: 860px) {
+    .navlinks, .nav-cta { display: none; }
+    .menu-toggle { display: flex; }
+    .mobile-menu { display: flex; }
+    .footer-grid { grid-template-columns: 1fr; gap: 32px; text-align: left; }
+    .pkg-grid, .dh-grid, .deposit-grid { grid-template-columns: 1fr; }
+    .addon-grid { grid-template-columns: repeat(2, 1fr); }
+    .experience-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 680px) {
+    .experience-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 480px) {
+    .page-hero h1 { font-size: 32px; }
+    .page-hero { padding: 56px 0 40px; }
+    .pkg-card { padding: 32px 24px; }
+    .pkg-price { font-size: 42px; }
+    .addon-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo"><a href="index.html" style="color:inherit;text-decoration:none;">Bubbles <span>and</span> Brews <span class="sub">Canada</span></a></div>
+  <div class="navlinks">
+    <a href="our-story.html">Our Story</a>
+    <a href="packages.html" class="active">Packages</a>
+    <a href="what-we-pour.html">What We Pour</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="frozen-bar.html">The Frozen Bar</a>
+    <div class="nav-dropdown">
+      <a href="resources.html">Resources</a>
+      <div class="nav-dropdown-panel">
+        <a href="ice-calculator.html">Ice Calculator</a>
+        <a href="drink-calculator.html">Drink Calculator</a>
+        <a href="trending-cocktails.html">Trending Cocktails</a>
+      </div>
+    </div>
+          <a href="faq.html">FAQ</a>
+  </div>
+  <a href="inquire.html" class="nav-cta">Let's talk</a>
+  <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" onclick="document.getElementById('mobile-menu').classList.toggle('open'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded')==='false');">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<main>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="our-story.html">Our Story</a>
+  <a href="packages.html" class="active">Packages</a>
+  <a href="what-we-pour.html">What We Pour</a>
+  <a href="gallery.html">Gallery</a>
+  <a href="frozen-bar.html">The Frozen Bar</a>
+  <a href="resources.html">Resources</a>
+  <a href="faq.html">FAQ</a>
+  <a href="inquire.html" class="mm-cta">Let's talk</a>
+</div>
+
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="eyebrow">Packages &amp; pricing</div>
+    <h1>Pouring hours, not parking hours</h1>
+    <p>Every package includes full setup before your event and teardown after — so your booked hours are pouring hours, not us getting in your way. Prices in CAD.</p>
+  </div>
+</section>
+
+<div class="pkg-grid">
+  <div class="pkg-card">
+    <div class="pkg-name">Weeknight</div>
+    <div class="pkg-starting">Starting from</div>
+    <div class="pkg-price"><sup>$</sup>1,100</div>
+    <div class="pkg-from">CAD</div>
+    <div class="pkg-hours">4 hours of pouring</div>
+    <div class="pkg-divider"></div>
+    <div class="pkg-includes-title">What's included</div>
+    <ul class="pkg-list">
+      <li><span class="mark">&#10003;</span> The Piaggio Ape and bartender on site</li>
+      <li><span class="mark">&#10003;</span> 2 taps with 120ft cooling lines</li>
+      <li><span class="mark">&#10003;</span> One tap always available non-alcoholic</li>
+      <li><span class="mark">&#10003;</span> Limited drinkware, ice, garnish, and condiments*</li>
+      <li><span class="mark">&#10003;</span> CO2 for typical guest counts*</li>
+      <li><span class="mark">&#10003;</span> Full setup and teardown</li>
+    </ul>
+    <div class="pkg-foot"><a href="inquire.html" class="pkg-btn">Inquire about this package</a></div>
+  </div>
+
+  <div class="pkg-card featured">
+    <div class="pkg-badge">Most popular</div>
+    <div class="pkg-name">Full event</div>
+    <div class="pkg-starting">Starting from</div>
+    <div class="pkg-price"><sup>$</sup>1,950</div>
+    <div class="pkg-from">CAD</div>
+    <div class="pkg-hours">8 hours of pouring</div>
+    <div class="pkg-divider"></div>
+    <div class="pkg-includes-title">What's included</div>
+    <ul class="pkg-list">
+      <li><span class="mark">&#10003;</span> The Piaggio Ape and bartender on site</li>
+      <li><span class="mark">&#10003;</span> 2 taps with 120ft cooling lines</li>
+      <li><span class="mark">&#10003;</span> One tap always available non-alcoholic</li>
+      <li><span class="mark">&#10003;</span> Limited drinkware, ice, garnish, and condiments*</li>
+      <li><span class="mark">&#10003;</span> CO2 for typical guest counts*</li>
+      <li><span class="mark">&#10003;</span> Full setup and teardown</li>
+      <li><span class="mark">&#10003;</span> Our most-booked option for weddings</li>
+    </ul>
+    <div class="pkg-foot"><a href="inquire.html" class="pkg-btn">Inquire about this package</a></div>
+  </div>
+</div>
+<p class="travel-note">Drop-off and pickup included within Calgary city limits. Travel fee applies outside the city — we regularly serve Banff, Canmore, and Southern Alberta.</p>
+<p class="travel-note" style="margin-top: 8px;">*Drinkware, ice, and CO2 quantities are set for typical guest counts. Larger events may need an add-on to keep everyone properly stocked — we'll flag this with you ahead of time, never as a surprise. Call or inquire for details specific to your event.</p>
+
+<section class="dry-hire">
+  <div class="dh-grid">
+    <div class="dh-img"></div>
+    <div class="dh-copy">
+      <div class="eyebrow">The dry-hire model</div>
+      <h2>You provide the alcohol. We handle absolutely everything else.</h2>
+      <p>Bubbles and Brews Canada operates dry-hire: you supply the alcohol, and we bring the truck, the bartenders, the taps, the drinkware, the ice, and the show. No cash bars, no liquor markup — your liquor cost stays exactly what you paid for it.</p>
+      <div class="dh-callout">Alcohol must be on-site at the time of drop-off. We'll walk you through exactly what to buy and how much, based on your guest count and drink choices.</div>
+    </div>
+  </div>
+</section>
+
+<section class="deposit-section">
+  <div class="deposit-grid">
+    <div class="deposit-card">
+      <h3>Booking &amp; deposit</h3>
+      <p>A $500 non-refundable deposit secures your date upon signed contract. The remaining balance is due 30 days prior to your event.</p>
+    </div>
+    <div class="deposit-card">
+      <h3>Power on site</h3>
+      <p>A standard 110V, 15-amp outlet is required at the location of the cart. Power access and any related cost is the client's responsibility — we're happy to talk through this ahead of time.</p>
+    </div>
+  </div>
+</section>
+
+<section class="addons">
+  <div class="wrap">
+    <h2 class="section-title">Make it yours</h2>
+    <p class="section-sub">Extras to round out the experience — some with set pricing, some quoted to your event size.</p>
+
+    <div class="experience-grid">
+      <div class="experience-card">
+        <div class="experience-tag">Made live, on-site</div>
+        <h3>Glitter Bomb Cotton Candy</h3>
+        <p>Hand-spun cotton candy, packed with edible glitter, dropped right into your glass. Watch it dissolve and swirl into a sparkling drink as it melts — made fresh on-site for the full effect.</p>
+        <span class="experience-price">Call for pricing</span>
+      </div>
+      <div class="experience-card">
+        <div class="experience-tag">Frozen cocktail rental</div>
+        <h3>The Frozen Bar</h3>
+        <p>A commercial 3-bowl slush machine with delivery, setup, mixes, cups, and a stainless steel table — ready to pour 180 frozen drinks. You choose three flavours; you supply the spirit.</p>
+        <a href="frozen-bar.html" class="experience-price" style="text-decoration:none;">Add-on from $350 &rarr;</a>
+      </div>
+      <div class="experience-card">
+        <div class="experience-tag">Add-on bar package</div>
+        <h3>The Bellini Bar</h3>
+        <p>A fresh juice and fruit station alongside your main service — choose from 9 juice varieties, fresh seasonal fruit, and herb garnishes. You supply the prosecco. We bring everything else.</p>
+        <a href="frozen-bar.html#bellini" class="experience-price" style="text-decoration:none;">Add-on from $250 &rarr;</a>
+      </div>
+    </div>
+
+    <div class="addon-grid">
+      <div class="addon-card">
+        <h4>Real glassware</h4>
+        <p>Want glass instead of our standard drinkware? We can connect you with a rental partner — booked and paid directly by you, so breakage isn't on either of our shoulders.</p>
+      </div>
+      <div class="addon-card">
+        <h4>Florals &amp; styling</h4>
+        <p>Fresh or dried florals adorning the truck, matched to your event's colours.</p>
+      </div>
+      <div class="addon-card">
+        <h4>Custom signage</h4>
+        <p>Hand-lettering, chalk signs, or printed vinyl with your names or message.</p>
+      </div>
+      <div class="addon-card">
+        <h4>Extra consumables</h4>
+        <p>Larger guest counts can mean more ice, drinkware, and garnish than a standard package covers — we'll flag this with you ahead of time and quote it simply.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h4>Bubbles and Brews Canada</h4>
+      <p style="font-size:14px; opacity:0.85; line-height:1.6; max-width:240px;">A vintage Piaggio Ape mobile bar serving Calgary, Banff, and Canmore.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <a href="our-story.html">Our Story</a>
+      <a href="packages.html">Packages</a>
+      <a href="what-we-pour.html">What We Pour</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="frozen-bar.html">The Frozen Bar</a>
+      <a href="faq.html">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <h4>Get in touch</h4>
+      <a href="inquire.html">Let's talk</a>
+      <a href="tel:4033830900">403.383.0900</a>
+      <a href="mailto:cindy@bubblesandbrews.ca">cindy@bubblesandbrews.ca</a>
+      <a href="https://instagram.com/bubblesandbrewscanada" target="_blank" rel="noopener">@bubblesandbrewscanada</a>
+    </div>
+  </div>
+  <div class="footer-bottom">Bubbles and Brews Canada &middot; Calgary, Alberta &middot; Bubbles and Brews Canada is a registered trademark</div>
+</footer>
+
+</body>
+</html>

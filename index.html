@@ -59,7 +59,7 @@
     letter-spacing: 0.02em;
   }
   .logo span { color: var(--terracotta); font-style: italic; }
-  .navlinks { display: flex; gap: 20px; font-size: 13px; letter-spacing: 0.025em; text-transform: uppercase; }
+  .navlinks { display: flex; gap: 36px; font-size: 14px; letter-spacing: 0.04em; text-transform: uppercase; }
   .navlinks a { color: var(--ink); text-decoration: none; }
   .nav-dropdown { position: relative; }
   .nav-dropdown-panel {
@@ -494,7 +494,7 @@ footer .tm { opacity: 0.6; }
   .frozen-feature { background: var(--cream-deep); }
   .frozen-feature-grid {
     display: grid;
-    grid-template-columns: 1.1fr 1fr;
+    grid-template-columns: 1fr 1.1fr;
     gap: 56px;
     align-items: center;
     max-width: 980px;
@@ -592,41 +592,41 @@ footer .tm { opacity: 0.6; }
 <body>
 
 <nav>
-  <div class="logo"><a href='/' style='color:inherit;text-decoration:none;'>Bubbles <span>and</span> Brews <span style="font-style:normal;font-size:14px;color:#6B6358;">Canada</span></a></div>
+  <div class="logo"><a href="index.html" style="color:inherit;text-decoration:none;">Bubbles <span>and</span> Brews <span style="font-style:normal;font-size:14px;color:#6B6358;">Canada</span></a></div>
   <div class="navlinks">
-    <a href='/our-story'>Our Story</a>
-    <a href='/packages'>Packages</a>
-    <a href='/what-we-pour'>What We Pour</a>
-    <a href='/gallery'>Gallery</a>
-    <a href='/frozen-bar'>The Frozen Bar</a>
+    <a href="our-story.html">Our Story</a>
+    <a href="packages.html">Packages</a>
+    <a href="what-we-pour.html">What We Pour</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="frozen-bar.html">The Frozen Bar</a>
     <div class="nav-dropdown">
-      <a href='/resources'>Resources</a>
+      <a href="resources.html">Resources</a>
       <div class="nav-dropdown-panel">
-        <a href='/ice-calculator'>Ice Calculator</a>
-        <a href='/drink-calculator'>Drink Calculator</a>
-        <a href='/trending-cocktails'>Trending Cocktails</a>
+        <a href="ice-calculator.html">Ice Calculator</a>
+        <a href="drink-calculator.html">Drink Calculator</a>
+        <a href="trending-cocktails.html">Trending Cocktails</a>
       </div>
     </div>
-          <a href='/faq'>FAQ</a>
+          <a href="faq.html">FAQ</a>
   </div>
-  <a class='nav-cta' href='/inquire'>Let's talk</a>
+  <a href="inquire.html" class="nav-cta">Let's talk</a>
   <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" onclick="document.getElementById('mobile-menu').classList.toggle('open'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded')==='false');">
     <span></span><span></span><span></span>
   </button>
 </nav>
 <main>
 <div class="mobile-menu" id="mobile-menu">
-  <a href='/our-story'>Our Story</a>
-  <a href='/packages'>Packages</a>
-  <a href='/what-we-pour'>What We Pour</a>
-  <a href='/gallery'>Gallery</a>
-  <a href='/frozen-bar'>The Frozen Bar</a>
-  <a href='/resources'>Resources</a>
-  <a class='mm-sub' href='/ice-calculator'>Ice Calculator</a>
-  <a class='mm-sub' href='/drink-calculator'>Drink Calculator</a>
-  <a class='mm-sub' href='/trending-cocktails'>Trending Cocktails</a>
-  <a href='/faq'>FAQ</a>
-  <a class='mm-cta' href='/inquire'>Let's talk</a>
+  <a href="our-story.html">Our Story</a>
+  <a href="packages.html">Packages</a>
+  <a href="what-we-pour.html">What We Pour</a>
+  <a href="gallery.html">Gallery</a>
+  <a href="frozen-bar.html">The Frozen Bar</a>
+  <a href="resources.html">Resources</a>
+  <a href="ice-calculator.html" class="mm-sub">Ice Calculator</a>
+  <a href="drink-calculator.html" class="mm-sub">Drink Calculator</a>
+  <a href="trending-cocktails.html" class="mm-sub">Trending Cocktails</a>
+  <a href="faq.html">FAQ</a>
+  <a href="inquire.html" class="mm-cta">Let's talk</a>
 </div>
 
 <section class="hero" style="padding:0;">
@@ -640,7 +640,7 @@ footer .tm { opacity: 0.6; }
     <h1>A vintage Italian truck.<br>Two taps. Whatever you're<br>celebrating.</h1>
     <p>Bubbles and Brews Canada brings a fully restored Piaggio Ape mobile bar to your wedding, party, or event — pouring prosecco, craft beer, and custom cocktails on tap, right where your guests are standing.</p>
     <div class="hero-ctas">
-      <a class='btn-primary' href='/inquire' style='text-decoration:none; display:inline-block;'>Get a quote</a>
+      <a href="inquire.html" class="btn-primary" style="text-decoration:none; display:inline-block;">Get a quote</a>
       <a href="tel:4033830900" class="btn-secondary" style="text-decoration:none; display:inline-block;">Call 403.383.0900</a>
     </div>
   </div>
@@ -675,7 +675,7 @@ footer .tm { opacity: 0.6; }
         <div class="pkg-price"><sup>$</sup>1,100</div>
         <div class="pkg-from">4 hours of pouring &middot; CAD</div>
         <p class="pkg-desc">Ideal for smaller gatherings, corporate happy hours, and weeknight celebrations.</p>
-        <a class='pkg-link' href='/packages'>See details</a>
+        <a href="packages.html" class="pkg-link">See details</a>
       </div>
       <div class="pkg-card featured">
         <div class="pkg-badge">Most popular</div>
@@ -684,7 +684,7 @@ footer .tm { opacity: 0.6; }
         <div class="pkg-price"><sup>$</sup>1,950</div>
         <div class="pkg-from">8 hours of pouring &middot; CAD</div>
         <p class="pkg-desc">Our signature wedding and weekend package — the full Bubbles and Brews experience.</p>
-        <a class='pkg-link' href='/packages'>See details</a>
+        <a href="packages.html" class="pkg-link">See details</a>
       </div>
     </div>
     <p class="pkg-note">Travel fee applies outside Calgary city limits &middot; we also serve Banff, Canmore, and Southern Alberta</p>
@@ -726,14 +726,14 @@ footer .tm { opacity: 0.6; }
 
 <section class="frozen-feature">
   <div class="wrap frozen-feature-grid">
+    <div class="frozen-feature-img">
+      <img src="photos/frozen-bar/peach-bellini.jpg" alt="Peach bellini served from The Frozen Bar by Bubbles and Brews Canada" loading="lazy">
+    </div>
     <div class="frozen-feature-copy">
       <div class="frozen-new-badge">New for 2026</div>
       <h2>Introducing The Frozen Bar.</h2>
       <p>A commercial 3-bowl slush machine, delivered and set up at your event. Three flavours, around 180 frozen drinks, any standard outlet. You bring the spirit — we handle the rest.</p>
-      <a class='pkg-link' href='/frozen-bar'>See pricing &amp; flavours</a>
-    </div>
-    <div class="frozen-feature-img">
-      <img src="photos/frozen-bar/peach-bellini.jpg" alt="Peach bellini served from The Frozen Bar by Bubbles and Brews Canada" loading="lazy">
+      <a href="frozen-bar.html" class="pkg-link">See pricing &amp; flavours</a>
     </div>
   </div>
 </section>
@@ -761,7 +761,7 @@ footer .tm { opacity: 0.6; }
       <div class="gal-item gal-5"><span>Bachelorette party</span></div>
       <div class="gal-item gal-6"><span>Golden hour</span></div>
     </div>
-    <div class="gal-cta"><a class='pkg-link' href='/gallery'>See the full gallery</a></div>
+    <div class="gal-cta"><a href="gallery.html" class="pkg-link">See the full gallery</a></div>
   </div>
 </section>
 
@@ -779,7 +779,7 @@ footer .tm { opacity: 0.6; }
     <div class="section-label" style="color:var(--sand);">Let's talk</div>
     <h2 style="color:var(--white);">Tell us about your event</h2>
     <p class="lead" style="margin: 0 auto 32px;">Most people end up chatting with Cindy directly — fill out a quick form and we'll get back to you fast.</p>
-    <a href='/inquire' style='display:inline-block; background:var(--terracotta); color:var(--white); padding:16px 36px; font-size:14px; letter-spacing:0.06em; text-transform:uppercase; border-radius:2px; text-decoration:none; margin-bottom:28px;'>Get a quote</a>
+    <a href="inquire.html" style="display:inline-block; background:var(--terracotta); color:var(--white); padding:16px 36px; font-size:14px; letter-spacing:0.06em; text-transform:uppercase; border-radius:2px; text-decoration:none; margin-bottom:28px;">Get a quote</a>
     <div class="contact-direct" style="border-top: 1px solid rgba(255,255,255,0.15); padding-top: 24px; text-align:center;">
       <div class="label">Or reach us directly</div>
       <a href="tel:4033830900">403.383.0900</a>
@@ -798,16 +798,16 @@ footer .tm { opacity: 0.6; }
     </div>
     <div class="footer-col">
       <h3>Explore</h3>
-      <a href='/our-story'>Our Story</a>
-      <a href='/packages'>Packages</a>
-      <a href='/what-we-pour'>What We Pour</a>
-      <a href='/gallery'>Gallery</a>
-      <a href='/frozen-bar'>The Frozen Bar</a>
-      <a href='/faq'>FAQ</a>
+      <a href="our-story.html">Our Story</a>
+      <a href="packages.html">Packages</a>
+      <a href="what-we-pour.html">What We Pour</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="frozen-bar.html">The Frozen Bar</a>
+      <a href="faq.html">FAQ</a>
     </div>
     <div class="footer-col">
       <h3>Get in touch</h3>
-      <a href='/inquire'>Let's talk</a>
+      <a href="inquire.html">Let's talk</a>
       <a href="tel:4033830900">403.383.0900</a>
       <a href="mailto:cindy@bubblesandbrews.ca">cindy@bubblesandbrews.ca</a>
     </div>
