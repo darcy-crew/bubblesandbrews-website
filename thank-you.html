@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thank You — Bubbles and Brews Canada</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"></noscript>
+<style>
+  :root {
+    --cream: #FAF6EE; --cream-deep: #F1E9D8; --sand: #E4D7BE;
+    --terracotta: #965C43; --olive: #6B7256; --ink: #3A3530;
+    --ink-soft: #6B6358; --white: #FFFFFF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Jost', sans-serif; color: var(--ink); background: var(--cream); line-height: 1.7; min-height: 100vh; display: flex; flex-direction: column; }
+  h1, h2 { font-family: 'Cormorant Garamond', serif; font-weight: 500; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+  nav { display: flex; align-items: center; justify-content: space-between; padding: 20px 32px; max-width: 1180px; margin: 0 auto; }
+  .logo a { color: var(--ink); text-decoration: none; font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 500; }
+  .logo span { color: var(--terracotta); font-style: italic; }
+  .logo .sub { font-style: normal; font-size: 14px; color: var(--ink-soft); }
+
+  main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 48px 32px;
+  }
+  .thanks-box { max-width: 520px; }
+  .eyebrow { color: var(--terracotta); font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 16px; }
+  h1 { font-size: 42px; margin-bottom: 18px; }
+  .thanks-box p { color: var(--ink-soft); font-size: 16.5px; margin-bottom: 32px; }
+  .direct-note {
+    background: var(--white);
+    border: 1px solid var(--sand);
+    border-radius: 6px;
+    padding: 24px 28px;
+    margin-bottom: 32px;
+    text-align: left;
+  }
+  .direct-note .label { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 10px; }
+  .direct-note a { display: block; color: var(--ink); text-decoration: none; font-size: 16px; padding: 4px 0; }
+  .back-link { display: inline-block; color: var(--terracotta); text-decoration: none; font-size: 14px; letter-spacing: 0.04em; border-bottom: 1px solid var(--terracotta); padding-bottom: 3px; }
+
+  footer { background: var(--ink); color: var(--sand); text-align: center; padding: 24px 0; font-size: 13px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo"><a href="index.html">Bubbles <span>and</span> Brews <span class="sub">Canada</span></a></div>
+</nav>
+
+<main>
+  <div class="thanks-box">
+    <div class="eyebrow">Got it</div>
+    <h1>Thanks — we've got your message</h1>
+    <p>We'll be in touch soon, usually within a day or two. If your event is coming up fast, give us a call and we'll skip the wait.</p>
+    <div class="direct-note">
+      <div class="label">In a hurry?</div>
+      <a href="tel:4033830900">403.383.0900</a>
+      <a href="mailto:cindy@bubblesandbrews.ca">cindy@bubblesandbrews.ca</a>
+    </div>
+    <a href="index.html" class="back-link">Back to the homepage</a>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">Bubbles and Brews Canada &middot; Calgary, Alberta</div>
+</footer>
+
+</body>
+</html>

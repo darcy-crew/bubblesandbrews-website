@@ -24,7 +24,7 @@
   .logo a { color: var(--ink); text-decoration: none; font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 500; }
   .logo span { color: var(--terracotta); font-style: italic; }
   .logo .sub { font-style: normal; font-size: 14px; color: var(--ink-soft); }
-  .navlinks { display: flex; gap: 20px; font-size: 13px; letter-spacing: 0.025em; text-transform: uppercase; }
+  .navlinks { display: flex; gap: 32px; font-size: 14px; letter-spacing: 0.04em; text-transform: uppercase; }
   .navlinks a { color: var(--ink); text-decoration: none; }
   .nav-dropdown { position: relative; }
   .nav-dropdown-panel {
@@ -152,38 +152,38 @@
 <body>
 
 <nav>
-  <div class="logo"><a href='/'>Bubbles <span>and</span> Brews <span class="sub">Canada</span></a></div>
+  <div class="logo"><a href="index.html">Bubbles <span>and</span> Brews <span class="sub">Canada</span></a></div>
   <div class="navlinks">
-    <a href='/our-story'>Our Story</a>
-    <a href='/packages'>Packages</a>
-    <a href='/what-we-pour'>What We Pour</a>
-    <a href='/gallery'>Gallery</a>
-    <a href='/frozen-bar'>The Frozen Bar</a>
+    <a href="our-story.html">Our Story</a>
+    <a href="packages.html">Packages</a>
+    <a href="what-we-pour.html">What We Pour</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="frozen-bar.html">The Frozen Bar</a>
     <div class="nav-dropdown">
-      <a class='active' href='/resources'>Resources</a>
+      <a href="resources.html" class="active">Resources</a>
       <div class="nav-dropdown-panel">
-        <a href='/ice-calculator'>Ice Calculator</a>
-        <a href='/drink-calculator'>Drink Calculator</a>
-        <a href='/trending-cocktails'>Trending Cocktails</a>
+        <a href="ice-calculator.html">Ice Calculator</a>
+        <a href="drink-calculator.html">Drink Calculator</a>
+        <a href="trending-cocktails.html">Trending Cocktails</a>
       </div>
     </div>
-    <a href='/faq'>FAQ</a>
+    <a href="faq.html">FAQ</a>
   </div>
-  <a class='nav-cta' href='/inquire'>Let's talk</a>
+  <a href="inquire.html" class="nav-cta">Let's talk</a>
   <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" onclick="document.getElementById('mobile-menu').classList.toggle('open'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded')==='false');">
     <span></span><span></span><span></span>
   </button>
 </nav>
 <main>
 <div class="mobile-menu" id="mobile-menu">
-  <a href='/our-story'>Our Story</a>
-  <a href='/packages'>Packages</a>
-  <a href='/what-we-pour'>What We Pour</a>
-  <a href='/gallery'>Gallery</a>
-  <a href='/frozen-bar'>The Frozen Bar</a>
-  <a class='active' href='/resources'>Resources</a>
-  <a href='/faq'>FAQ</a>
-  <a class='mm-cta' href='/inquire'>Let's talk</a>
+  <a href="our-story.html">Our Story</a>
+  <a href="packages.html">Packages</a>
+  <a href="what-we-pour.html">What We Pour</a>
+  <a href="gallery.html">Gallery</a>
+  <a href="frozen-bar.html">The Frozen Bar</a>
+  <a href="resources.html" class="active">Resources</a>
+  <a href="faq.html">FAQ</a>
+  <a href="inquire.html" class="mm-cta">Let's talk</a>
 </div>
 
 <section class="page-hero">
@@ -194,7 +194,7 @@
 
 <div class="resource-grid">
 
-  <a class='resource-card ice' href='/ice-calculator'>
+  <a href="ice-calculator.html" class="resource-card ice">
     <div class="resource-thumb"><img src="photos/resources/ice-cubes-closeup.jpg" alt="Close-up of clear ice cubes, illustrating the Bubbles and Brews ice calculator tool" loading="lazy"></div>
     <div class="resource-body">
       <div class="resource-tag">Planning tool</div>
@@ -204,7 +204,7 @@
     </div>
   </a>
 
-  <a class='resource-card drink' href='/drink-calculator'>
+  <a href="drink-calculator.html" class="resource-card drink">
     <div class="resource-thumb"><img src="photos/resources/cold-drinks-vintage-sign.jpg" alt="Vintage red 'Cold Drinks' lettering on the side of the Bubbles and Brews bar, illustrating the drink calculator tool" loading="lazy"></div>
     <div class="resource-body">
       <div class="resource-tag">Planning tool</div>
@@ -212,7 +212,7 @@
       <p>A general-purpose guide to how much wine, beer, and spirits to buy per guest — plus what to know about Alberta's unopened-bottle return policy.</p>
       <span class="resource-link">Calculate now &rarr;</span>
     </div>
-  </a>  <a class='resource-card trends' href='/trending-cocktails'>
+  </a>  <a href="trending-cocktails.html" class="resource-card trends">
     <div class="resource-thumb"><img src="photos/cocktails/modern-spritz.jpg" alt="Modern spritz cocktail, one of the trending drinks featured on the Bubbles and Brews menu" loading="lazy"></div>
     <div class="resource-body">
       <div class="resource-tag">Updated for 2026</div>
@@ -238,17 +238,17 @@
     </div>
     <div class="footer-col">
       <h3>Explore</h3>
-      <a href='/our-story'>Our Story</a>
-      <a href='/packages'>Packages</a>
-      <a href='/what-we-pour'>What We Pour</a>
-      <a href='/gallery'>Gallery</a>
-      <a href='/frozen-bar'>The Frozen Bar</a>
-      <a href='/resources'>Resources</a>
-      <a href='/faq'>FAQ</a>
+      <a href="our-story.html">Our Story</a>
+      <a href="packages.html">Packages</a>
+      <a href="what-we-pour.html">What We Pour</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="frozen-bar.html">The Frozen Bar</a>
+      <a href="resources.html">Resources</a>
+      <a href="faq.html">FAQ</a>
     </div>
     <div class="footer-col">
       <h3>Get in touch</h3>
-      <a href='/inquire'>Let's talk</a>
+      <a href="inquire.html">Let's talk</a>
       <a href="tel:4033830900">403.383.0900</a>
       <a href="mailto:cindy@bubblesandbrews.ca">cindy@bubblesandbrews.ca</a>
       <a href="https://instagram.com/bubblesandbrewscanada" target="_blank" rel="noopener">@bubblesandbrewscanada</a>

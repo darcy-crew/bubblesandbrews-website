@@ -24,7 +24,7 @@
   .logo a { color: var(--ink); text-decoration: none; font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 500; }
   .logo span { color: var(--terracotta); font-style: italic; }
   .logo .sub { font-style: normal; font-size: 14px; color: var(--ink-soft); }
-  .navlinks { display: flex; gap: 20px; font-size: 13px; letter-spacing: 0.025em; text-transform: uppercase; }
+  .navlinks { display: flex; gap: 32px; font-size: 14px; letter-spacing: 0.04em; text-transform: uppercase; }
   .navlinks a { color: var(--ink); text-decoration: none; }
   .nav-dropdown { position: relative; }
   .nav-dropdown-panel {
@@ -319,38 +319,38 @@
 <body>
 
 <nav>
-  <div class="logo"><a href='/'>Bubbles <span>and</span> Brews <span class="sub">Canada</span></a></div>
+  <div class="logo"><a href="index.html">Bubbles <span>and</span> Brews <span class="sub">Canada</span></a></div>
   <div class="navlinks">
-    <a href='/our-story'>Our Story</a>
-    <a href='/packages'>Packages</a>
-    <a href='/what-we-pour'>What We Pour</a>
-    <a href='/gallery'>Gallery</a>
-    <a href='/frozen-bar'>The Frozen Bar</a>
+    <a href="our-story.html">Our Story</a>
+    <a href="packages.html">Packages</a>
+    <a href="what-we-pour.html">What We Pour</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="frozen-bar.html">The Frozen Bar</a>
     <div class="nav-dropdown">
-      <a class='active' href='/resources'>Resources</a>
+      <a href="resources.html" class="active">Resources</a>
       <div class="nav-dropdown-panel">
-        <a href='/ice-calculator'>Ice Calculator</a>
-        <a href='/drink-calculator'>Drink Calculator</a>
-        <a href='/trending-cocktails'>Trending Cocktails</a>
+        <a href="ice-calculator.html">Ice Calculator</a>
+        <a href="drink-calculator.html">Drink Calculator</a>
+        <a href="trending-cocktails.html">Trending Cocktails</a>
       </div>
     </div>
-    <a href='/faq'>FAQ</a>
+    <a href="faq.html">FAQ</a>
   </div>
-  <a class='nav-cta' href='/inquire'>Let's talk</a>
+  <a href="inquire.html" class="nav-cta">Let's talk</a>
   <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" onclick="document.getElementById('mobile-menu').classList.toggle('open'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded')==='false');">
     <span></span><span></span><span></span>
   </button>
 </nav>
 <main>
 <div class="mobile-menu" id="mobile-menu">
-  <a href='/our-story'>Our Story</a>
-  <a href='/packages'>Packages</a>
-  <a href='/what-we-pour'>What We Pour</a>
-  <a href='/gallery'>Gallery</a>
-  <a href='/frozen-bar'>The Frozen Bar</a>
-  <a class='active' href='/resources'>Resources</a>
-  <a href='/faq'>FAQ</a>
-  <a class='mm-cta' href='/inquire'>Let's talk</a>
+  <a href="our-story.html">Our Story</a>
+  <a href="packages.html">Packages</a>
+  <a href="what-we-pour.html">What We Pour</a>
+  <a href="gallery.html">Gallery</a>
+  <a href="frozen-bar.html">The Frozen Bar</a>
+  <a href="resources.html" class="active">Resources</a>
+  <a href="faq.html">FAQ</a>
+  <a href="inquire.html" class="mm-cta">Let's talk</a>
 </div>
 
 <section class="page-hero">
@@ -934,24 +934,24 @@
 <section class="cta-strip">
   <h2>Want any of these on tap at your event?</h2>
   <p>Tell us your two, and we'll build the rest — these trends and more are all fair game for your tap menu.</p>
-  <a class='pkg-btn' href='/inquire'>Build your menu</a>
+  <a href="inquire.html" class="pkg-btn">Build your menu</a>
 </section>
 
 <section class="more-resources">
   <div class="wrap">
     <h2>More planning resources</h2>
     <div class="more-resources-grid">
-      <a class='more-resources-card' href='/ice-calculator'>
+      <a href="ice-calculator.html" class="more-resources-card">
         <div class="tag">Free tool</div>
         <h3>Ice Calculator</h3>
         <p>How much serving and cooling ice you actually need.</p>
       </a>
-      <a class='more-resources-card' href='/drink-calculator'>
+      <a href="drink-calculator.html" class="more-resources-card">
         <div class="tag">Free tool</div>
         <h3>Drink Calculator</h3>
         <p>How much wine, beer, and spirits to buy for your guest count.</p>
       </a>    </div>
-    <div class="more-resources-all"><a href='/resources'>See all resources &rarr;</a></div>
+    <div class="more-resources-all"><a href="resources.html">See all resources &rarr;</a></div>
   </div>
 </section>
 
@@ -964,15 +964,15 @@
     </div>
     <div class="footer-col">
       <h4>Explore</h4>
-      <a href='/our-story'>Our Story</a>
-      <a href='/what-we-pour'>What We Pour</a>
-      <a href='/frozen-bar'>The Frozen Bar</a>
-      <a href='/resources'>Resources</a>
-      <a href='/faq'>FAQ</a>
+      <a href="our-story.html">Our Story</a>
+      <a href="what-we-pour.html">What We Pour</a>
+      <a href="frozen-bar.html">The Frozen Bar</a>
+      <a href="resources.html">Resources</a>
+      <a href="faq.html">FAQ</a>
     </div>
     <div class="footer-col">
       <h4>Get in touch</h4>
-      <a href='/inquire'>Let's talk</a>
+      <a href="inquire.html">Let's talk</a>
       <a href="tel:4033830900">403.383.0900</a>
       <a href="https://instagram.com/bubblesandbrewscanada" target="_blank" rel="noopener">@bubblesandbrewscanada</a>
     </div>
