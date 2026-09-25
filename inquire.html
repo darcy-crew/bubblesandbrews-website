@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Get a Quote | Mobile Bar Calgary — Bubbles and Brews Canada</title>
-<meta name="description" content="Request a quote for your Calgary, Banff, or Canmore event. Tell us your date and guest count and we'll get back to you fast.">
+<title>Get a Proposal | Mobile Bar Calgary — Bubbles and Brews Canada</title>
+<meta name="description" content="Request a proposal for your Calgary, Banff, or Canmore event. Tell us your date and guest count and we'll get back to you fast.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap">
@@ -336,12 +336,42 @@
     </div>
     <div class="form-row">
       <div class="form-group">
+        <label class="form-label">Start time <span style="opacity:0.6;">(optional)</span></label>
+        <input type="time" name="start-time">
+      </div>
+      <div class="form-group">
+        <label class="form-label">End time <span style="opacity:0.6;">(optional)</span></label>
+        <input type="time" name="end-time">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
         <label class="form-label">Estimated guest count</label>
         <input type="number" name="guest-count" placeholder="e.g. 80">
       </div>
       <div class="form-group">
-        <label class="form-label">Venue location</label>
+        <label class="form-label">Venue name or city</label>
         <input type="text" name="venue-location" placeholder="City or venue name">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Street address <span style="opacity:0.6;">(optional)</span></label>
+        <input type="text" name="venue-address" placeholder="123 Example Ave">
+      </div>
+      <div class="form-group">
+        <label class="form-label">City <span style="opacity:0.6;">(optional)</span></label>
+        <input type="text" name="venue-city" placeholder="Calgary">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Province <span style="opacity:0.6;">(optional)</span></label>
+        <input type="text" name="venue-province" placeholder="AB">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Postal code <span style="opacity:0.6;">(optional)</span></label>
+        <input type="text" name="venue-postal-code" placeholder="T2P 1J9">
       </div>
     </div>
     <div class="form-group">
@@ -397,8 +427,14 @@
       email: data.get('email') || undefined,
       phone: data.get('phone') || undefined,
       event_date: data.get('event-date') || undefined,
+      start_time: data.get('start-time') || undefined,
+      end_time: data.get('end-time') || undefined,
       event_type: data.get('event-type') || undefined,
       venue: data.get('venue-location') || undefined,
+      venue_address_line1: data.get('venue-address') || undefined,
+      venue_city: data.get('venue-city') || undefined,
+      venue_province: data.get('venue-province') || undefined,
+      venue_postal_code: data.get('venue-postal-code') || undefined,
       guest_count: data.get('guest-count') ? Number(data.get('guest-count')) : undefined,
       notes: notesParts.length ? notesParts.join('\n\n') : undefined,
       marketing_consent: data.get('marketing-consent') === 'on',
